@@ -1,0 +1,26 @@
+[Unit]
+Description=WORX's distributed currency daemon
+After=network.target
+
+[Service]
+User=worx
+Group=worx
+
+Type=forking
+PIDFile=/var/lib/worxd/worxd.pid
+
+ExecStart=/usr/bin/worxd -daemon -pid=/var/lib/worxd/worxd.pid \
+          -conf=/etc/worx/worx.conf -datadir=/var/lib/worxd
+
+ExecStop=-/usr/bin/worx-cli -conf=/etc/worx/worx.conf \
+         -datadir=/var/lib/worxd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

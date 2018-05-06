@@ -1,0 +1,26 @@
+# /etc/conf.d/worxd: config file for /etc/init.d/worxd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/worx/worx.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/worxd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/worxd.pid"
+
+# Where to write worxd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/worxd"
+
+# User and group to own worxd process
+#BITCOIND_USER="worx"
+#BITCOIND_GROUP="worx"
+
+# Path to worxd executable
+#BITCOIND_BIN="/usr/bin/worxd"
+
+# Nice value to run worxd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
