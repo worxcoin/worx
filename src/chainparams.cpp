@@ -56,13 +56,12 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256("0x00000a0ff5b2bcc11e670f7c55fabca29796555e8727e5d820b947e96c6885de"))
-	(35, uint256("0x000001be2e30a7e58f38a0444864b772844f8a34257e6fc86f9e1c088292e35b"));
+	(0, uint256("0x00000a0ff5b2bcc11e670f7c55fabca29796555e8727e5d820b947e96c6885de"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1525626761, // * UNIX timestamp of last checkpoint block
-    36,    // * total number of transactions between genesis and last checkpoint
+    1524956400, // * UNIX timestamp of last checkpoint block
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -110,7 +109,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60;
         nTargetSpacing = 1 * 60;
-        nLastPOWBlock = 150;
+        nLastPOWBlock = 1440;
         nMaturity = 100;
         nMasternodeCountDrift = 20;
 	nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
