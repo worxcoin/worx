@@ -6,8 +6,8 @@ For further information visit us at [worx.global](https://worx.global/) or visit
 
 • PoW Algorithm: Quark  
 • Premine: (#0 Block) 100,000 WORX  
-• PoW Blocks: 1 - 1440  
-• PoS Blocks: Starting from 1441  
+• PoW Blocks: 1 - 1430  
+• PoS Blocks: Starting from 1431  
 • Block Time: 60 Seconds  
 • PoW Ending: ~ ca. 1/2 Days (Estimated: May 2018)  
 • Masternode Requirements: 1000 WORX  
@@ -19,7 +19,7 @@ _Proof of Work block rewards, masternode reward allocation_
 
 <table>
 <tr><th>Block Height</th><th>Reward Amount</th><th>Masternodes</th><th>Miners</th></tr>
-<tr><td>Block 1 - 1440</td><td>2 WORX</td><td>Masternodes 80%</td><td>Miners 20%</td></tr>
+<tr><td>Block 1 - 1430</td><td>2 WORX</td><td>Masternodes 80%</td><td>Miners 20%</td></tr>
 </table>
 
 # PoS Block Rewards
@@ -33,6 +33,13 @@ _Proof of Stake will automatically be enabled at block 1441._
     <th>Reward</th>
     <th>Masternodes</th>
     <th>PoS Stakers</th>
+  </tr>
+<tr>
+    <td>Phase 1</td>
+    <td>1431-1440</td>
+    <td>2 WORX</td>
+    <td>80%</td>
+    <td>20%</td>
   </tr>
   <tr>
     <td>Phase 2</td>

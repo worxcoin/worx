@@ -56,7 +56,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256("0x00000a0ff5b2bcc11e670f7c55fabca29796555e8727e5d820b947e96c6885de"));
+	(0, uint256("0x00000b05264210031b3cf6ad2ec6946e669b9d3b8fa7c7c9cbcc8e02742ed37c"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -109,14 +109,14 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60;
         nTargetSpacing = 1 * 60;
-        nLastPOWBlock = 1440;
+        nLastPOWBlock = 1430;
         nMaturity = 100;
         nMasternodeCountDrift = 20;
 	nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 21000000 * COIN;
 
-        const char* pszTimestamp = "29th April - Worx Birthday Yay";
+        const char* pszTimestamp = "29th April - Worx Birthday YAY!";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -129,13 +129,15 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1524956400;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 21184276;
+        genesis.nNonce = 21939425;
 		
         hashGenesisBlock = genesis.GetHash();
+
 	//printf("%s\n", hashGenesisBlock.ToString().c_str());
 	//printf("%s\n", genesis.hashMerkleRoot.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x00000a0ff5b2bcc11e670f7c55fabca29796555e8727e5d820b947e96c6885de"));
-        assert(genesis.hashMerkleRoot == uint256("0x049eec934986a7f74e3bf5ce5795e2fc6045183996e5c3d1d2c08311d2642648"));
+
+        assert(hashGenesisBlock == uint256("0x00000b05264210031b3cf6ad2ec6946e669b9d3b8fa7c7c9cbcc8e02742ed37c"));
+        assert(genesis.hashMerkleRoot == uint256("0x8d07c3e3724c17793bf8794d8bdeb30e33cf8ea4195142706031275f95747972"));
         
 
         vSeeds.push_back(CDNSSeedData("seed01.worx.global", "seed01.worx.global"));
@@ -207,11 +209,12 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1524956401;
-        genesis.nNonce = 21805480;
+        genesis.nNonce = 20839010;
 
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000f4bcc6c687db450747075553e3cca60f60fffbb6e3dbb32902af7348480"));
+
+        assert(hashGenesisBlock == uint256("0x00000d71c345b3b39c15eca6b14ffeec0f9fc9709d822739a20bf93c31e25ffd"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -281,7 +284,8 @@ public:
         hashGenesisBlock = genesis.GetHash();
 	
 	nDefaultPort = 3320;
-        assert(hashGenesisBlock == uint256("0x0e743c6089b4bc0ce0c7302b8cc6dd0e98c81ef7f72cdc6420ebfeebff058b2f"));
+
+        assert(hashGenesisBlock == uint256("0x71122de3457829075570e52b32fb5c5a983f2200dcdb438c956e8f8dafb86aae"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
