@@ -191,10 +191,10 @@ For **Ubuntu 16.04***
 
 ```
 sudo apt-get install libzmq3-dev libminiupnpc-dev -y
-wget https://github.com/worxcoin/worx/releases/download/v1.0.0.1/worx-1.0.0-x86_64-linux-gnu.tar.gz
-tar -zxvf worx-1.0.0-x86_64-linux-gnu.tar.gz
-rm -f worx-1.0.0-x86_64-linux-gnu.tar.gz
-mv worx-1.0.0 worx
+wget https://github.com/worxcoin/worx/releases/download/V1.1.0.0/worx-1.1.0-x86_64-linux-gnu.tar.gz
+tar -zxvf worx-1.1.0-x86_64-linux-gnu.tar.gz
+rm -f worx-1.1.0-x86_64-linux-gnu.tar.gz
+mv worx-1.1.0 worx
 chmod +x ~/worx/bin/worxd
 chmod +x ~/worx/bin/worx-cli
 sudo cp ~/worx/bin/worxd /usr/local/bin
