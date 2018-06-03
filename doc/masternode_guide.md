@@ -29,10 +29,10 @@ Alias Address Privkey TxHash TxIndex
 * Privkey: **Masternode Private Key**
 * TxHash: **First value from Step 6**
 * TxIndex:  **Second value from Step 6**
-9.1. Save and close the file.
-10. Open Windows Explorer and go to **%APPDATA%\Worx** folder
-11. Open/create worx.conf
-12. Add this addnodes 
+10. Save and close the file.
+11. Open Windows Explorer and go to **%APPDATA%\Worx** folder
+12. Open/create worx.conf
+13. Add this addnodes 
 ```
 addnode=209.240.237.60:29328
 addnode=23.95.226.107:29328
@@ -44,12 +44,12 @@ addnode=45.77.50.235:36236
 addnode=149.28.167.36:3300
 addnode=45.76.126.88:3300
 ```
-13. Save and close the file.
-14. Open **Debug Console** and type:
+14. Save and close the file.
+15. Open **Debug Console** and type:
 ```
 masternode start-alias MN1
 ```
-12. Login to your VPS and check your masternode status by running the following command. If you get **Status 9**, it means your masternode is active.
+16. Login to your VPS and check your masternode status by running the following command. If you get **Status 9**, it means your masternode is active.
 ```
 worx-cli masternode status
 ```
