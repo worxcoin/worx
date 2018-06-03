@@ -29,7 +29,7 @@ Alias Address Privkey TxHash TxIndex
 * Privkey: **Masternode Private Key**
 * TxHash: **First value from Step 6**
 * TxIndex:  **Second value from Step 6**
-9.1 Save and close the file.
+9.1. Save and close the file.
 10. Open Windows Explorer and go to **%APPDATA%\Worx** folder
 11. Open/create worx.conf
 12. Add this addnodes 
