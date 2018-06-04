@@ -1,5 +1,5 @@
 # Worx
-Shell script to install a [Worx Masternode](https://worx.global/) on a Linux server running Ubuntu 16.04. Use it on your own risk.
+Shell script to install a [Worx Masternode](https://worx.world/) on a Linux server running Ubuntu 16.04. Use it on your own risk.
 ***
 
 ## Installation
