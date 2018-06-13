@@ -1,20 +1,20 @@
-Name "Worx Core (-bit)"
+Name "Worx Core (32-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 2.0.0
+!define VERSION 1.1.0
 !define COMPANY "Worx Core project"
 !define URL http://bit.worxs/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/root/WORX/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/root/WORX/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/e/development/WORX/worx/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/e/development/WORX/worx/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/root/WORX/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/e/development/WORX/worx/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -22,13 +22,13 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "Worx Core"
 !define MUI_FINISHPAGE_RUN $INSTDIR\worx-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/root/WORX/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/e/development/WORX/worx/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
 !include Sections.nsh
 !include MUI2.nsh
-!if "" == "64"
+!if "32" == "64"
 !include x64.nsh
 !endif
 
@@ -48,8 +48,8 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /root/WORX/worx-${VERSION}-win-setup.exe
-!if "" == "64"
+OutFile /e/development/WORX/worx/worx-${VERSION}-win32-setup.exe
+!if "32" == "64"
 InstallDir $PROGRAMFILES64\WORX
 !else
 InstallDir $PROGRAMFILES\WORX
@@ -58,7 +58,7 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion ${VERSION}.3
+VIProductVersion ${VERSION}.0
 VIAddVersionKey ProductName "Worx Core"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -73,14 +73,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /root/WORX/release/worx-qt.exe
-    File /oname=COPYING.txt /root/WORX/COPYING
-    File /oname=readme.txt /root/WORX/doc/README_windows.txt
+    File /e/development/WORX/worx/release/worx-qt.exe
+    File /oname=COPYING.txt /e/development/WORX/worx/COPYING
+    File /oname=readme.txt /e/development/WORX/worx/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /root/WORX/release/worxd.exe
-    File /root/WORX/release/worx-cli.exe
+    File /e/development/WORX/worx/release/worxd.exe
+    File /e/development/WORX/worx/release/worx-cli.exe
     SetOutPath $INSTDIR\doc
-    File /r /root/WORX/doc\*.*
+    File /r /e/development/WORX/worx/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 
@@ -160,7 +160,7 @@ SectionEnd
 # Installer functions
 Function .onInit
     InitPluginsDir
-!if "" == "64"
+!if "32" == "64"
     ${If} ${RunningX64}
       ; disable registry redirection (enable access to 64-bit portion of registry)
       SetRegView 64
