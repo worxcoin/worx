@@ -1,6 +1,6 @@
 Anonymized transactions using coin mixing technology. 1-Second-Transactions. Network stability with masternodes, each is secured with a collateral of 1000 WORX.
 
-For further information visit us at [worx.world](https://worx.world/) or visit our ANN thread at [BitcoinTalk](TBA)
+For further information visit us at [worx.world](https://worx.world/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org/index.php?topic=3597636.0)
 
 # Coin Specs
 
