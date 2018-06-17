@@ -1,7 +1,9 @@
 Anonymized transactions using coin mixing technology. 1-Second-Transactions. Network stability with masternodes, each is secured with a collateral of 1000 WORX.
 
 For further information visit us at [worx.world](https://worx.world/) or visit our ANN thread at [BitcoinTalk](TBA)
-For manul installation on Linux 16.04 use this script [matsenode pdf](https://github.com/worxcoin/worx/blob/master/scripts/worx_masternode_guide.md_at_master_worxcoin_worx_GitHub.pdf)
+
+# For manul installation on Linux 16.04 
+[follow this pdf](https://github.com/worxcoin/worx/blob/master/scripts/worx_masternode_guide.md_at_master_worxcoin_worx_GitHub.pdf)
 
 # Coin Specs
 
