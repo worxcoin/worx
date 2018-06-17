@@ -149,6 +149,9 @@
 /* Define to 1 if you have the `iphlpapi' library (-liphlpapi). */
 #undef HAVE_LIBIPHLPAPI
 
+/* Define to 1 if you have the `jpeg ' library (-ljpeg ). */
+#undef HAVE_LIBJPEG_
+
 /* Define to 1 if you have the `kernel32' library (-lkernel32). */
 #undef HAVE_LIBKERNEL32
 
@@ -163,6 +166,9 @@
 
 /* Define to 1 if you have the `oleaut32' library (-loleaut32). */
 #undef HAVE_LIBOLEAUT32
+
+/* Define to 1 if you have the `png ' library (-lpng ). */
+#undef HAVE_LIBPNG_
 
 /* Define to 1 if you have the `rpcrt4' library (-lrpcrt4). */
 #undef HAVE_LIBRPCRT4
@@ -263,8 +269,7 @@
 /* Define this symbol if boost sleep_for works */
 #undef HAVE_WORKING_BOOST_SLEEP_FOR
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
 
 /* Define to the address where bug reports for this package should be sent. */
@@ -285,7 +290,7 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Define to necessary symbol if this constant uses a non-standard name on
+/* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
 #undef PTHREAD_CREATE_JOINABLE
 
@@ -327,6 +332,11 @@
 # ifndef WORDS_BIGENDIAN
 #  undef WORDS_BIGENDIAN
 # endif
+#endif
+
+/* Enable large inode numbers on Mac OS X 10.5.  */
+#ifndef _DARWIN_USE_64_BIT_INODE
+# define _DARWIN_USE_64_BIT_INODE 1
 #endif
 
 /* Number of bits in a file offset, on hosts where this is settable. */

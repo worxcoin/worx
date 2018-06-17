@@ -29,7 +29,7 @@ int nSubmittedFinalBudget;
 int GetBudgetPaymentCycleBlocks()
 {
     // Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-    if (Params().NetworkID() == CBaseChainParams::MAIN) return 43200/3;
+    if (Params().NetworkID() == CBaseChainParams::MAIN) return 43200;
     //for testing purposes
 
     return 144; //ten times per day
@@ -480,7 +480,7 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
     CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
 
     if (fProofOfStake) {
-        if (nHighestCount > mnodeman.CountEnabled(ActiveProtocol()) / 50) {
+        if (nHighestCount > 0) {
             unsigned int i = txNew.vout.size();
             txNew.vout.resize(i + 1);
             txNew.vout[i].scriptPubKey = payee;
@@ -494,7 +494,7 @@ void CBudgetManager::FillBlockPayee(CMutableTransaction& txNew, CAmount nFees, b
         //miners get the full amount on these blocks
         txNew.vout[0].nValue = blockValue;
 
-        if (nHighestCount > mnodeman.CountEnabled(ActiveProtocol()) / 50) {
+        if (nHighestCount > 0) {
             txNew.vout.resize(2);
 
             //these are super blocks, so their value can be much larger than normal
@@ -522,7 +522,7 @@ CBudgetProposal* CBudgetManager::FindProposal(const std::string& strProposalName
 {
     //find the prop with the highest yes count
 
-    int nYesCount = 0;
+    int nYesCount = -99999;
     CBudgetProposal* pbudgetProposal = NULL;
 
     std::map<uint256, CBudgetProposal>::iterator it = mapProposals.begin();
@@ -534,7 +534,7 @@ CBudgetProposal* CBudgetManager::FindProposal(const std::string& strProposalName
         ++it;
     }
 
-    if (nYesCount == 0) return NULL;
+    if (nYesCount == -99999) return NULL;
 
     return pbudgetProposal;
 }
@@ -568,7 +568,7 @@ bool CBudgetManager::IsBudgetPaymentBlock(int nBlockHeight)
     /*
         If budget doesn't have 5% of the network votes, then we should pay a masternode instead
     */
-    if (nHighestCount > mnodeman.CountEnabled(ActiveProtocol()) / 50) return true;
+    if (nHighestCount > mnodeman.CountEnabled(ActiveProtocol()) / 20) return true;
 
     return false;
 }
@@ -787,15 +787,14 @@ std::string CBudgetManager::GetRequiredPaymentsString(int nBlockHeight)
 }
 
 CAmount CBudgetManager::GetTotalBudget(int nHeight)
-{	CAmount nSubsidy = 2000 * COIN;
-    
-	if (chainActive.Tip() == NULL) 
-		return 0*nSubsidy;
+{
+    if (chainActive.Tip() == NULL) return 0;
+
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         CAmount nSubsidy = 500 * COIN;
         return ((nSubsidy / 100) * 10) * 146;
     }
-	return nSubsidy;
+	return 0;
 
 	/*
     //get block value and calculate from that
