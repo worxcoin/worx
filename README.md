@@ -93,13 +93,6 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>80%</td>
     <td>20%</td>
   </tr>
-  <tr>
-    <td>Phase 9</td>
-    <td>201601-Infinity</td>
-    <td>4 WORX</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
 </table>
 
 
