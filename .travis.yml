@@ -23,20 +23,51 @@ env:
     - WINEDEBUG=fixme-all
   matrix:
 # ARM
-    - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf" GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
+#    - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf" GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
 # Win32
-    - HOST=i686-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6 bc" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
+#    - HOST=i686-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6 bc" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
 # 32-bit + dash
-    - HOST=i686-pc-linux-gnu PACKAGES="g++-multilib bc python3-zmq" DEP_OPTS="NO_QT=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports LDFLAGS=-static-libstdc++" USE_SHELL="/bin/dash" PYZMQ=true
+#    - HOST=i686-pc-linux-gnu PACKAGES="g++-multilib bc python3-zmq" DEP_OPTS="NO_QT=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports LDFLAGS=-static-libstdc++" USE_SHELL="/bin/dash" PYZMQ=true
 # Win64
-    - HOST=x86_64-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-x86-64 wine1.6 bc" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
-# pivxd
-    - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-zmq" DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports CPPFLAGS=-DDEBUG_LOCKORDER" PYZMQ=true
+#    - HOST=x86_64-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-x86-64 wine1.6 bc" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
+# worxd
+#    - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-zmq" DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports CPPFLAGS=-DDEBUG_LOCKORDER" PYZMQ=true
 # No wallet
 #    - HOST=x86_64-unknown-linux-gnu PACKAGES="python3" DEP_OPTS="NO_WALLET=1" RUN_TESTS=true GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
 # Cross-Mac
-    - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
-
+    #didnt work - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
+    - HOST=x86_64-apple-darwin11 PPA="ppa:bitcoin/bitcoin" PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
+# Cross-Mac
+#    - stage: test
+#      env: >-
+#        HOST=x86_64-apple-darwin14
+#        PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev python3-setuptools-git"
+#        OSX_SDK=10.11
+#        GOAL="all deploy"
+#        BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror"
+#    - stage: lint
+#      env:
+#      sudo: false
+#      cache: false
+#      language: python
+#      python: '3.6'
+#      install:
+#        - travis_retry pip install flake8
+#      before_script:
+#        - git fetch --unshallow
+#      script:
+#        - if [ "$TRAVIS_EVENT_TYPE" = "pull_request" ]; then test/lint/commit-script-check.sh $TRAVIS_COMMIT_RANGE; fi
+#        - test/lint/git-subtree-check.sh src/crypto/ctaes
+#        - test/lint/git-subtree-check.sh src/secp256k1
+#        - test/lint/git-subtree-check.sh src/univalue
+#        - test/lint/git-subtree-check.sh src/leveldb
+#        - test/lint/check-doc.py
+#        - test/lint/check-rpc-mappings.py .
+#        - test/lint/lint-all.sh
+#        - if [ "$TRAVIS_REPO_SLUG" = "bitcoin/bitcoin" -a "$TRAVIS_EVENT_TYPE" = "cron" ]; then
+#              while read LINE; do travis_retry gpg --keyserver hkp://subset.pool.sks-keyservers.net --recv-keys $LINE; done < contrib/verify-commits/trusted-keys &&
+#              travis_wait 50 contrib/verify-commits/verify-commits.py;
+#          fi
 before_install:
     - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
 install:
