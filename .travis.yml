@@ -36,32 +36,32 @@ env:
 #    - HOST=x86_64-unknown-linux-gnu PACKAGES="python3" DEP_OPTS="NO_WALLET=1" RUN_TESTS=true GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
 # Cross-Mac
     #didnt work - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
-    - HOST=x86_64-apple-darwin11 PPA="ppa:bitcoin/bitcoin" PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
+    #            - HOST=x86_64-apple-darwin11 PPA="ppa:bitcoin/bitcoin" PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
 # Cross-Mac
-#    - stage: test
-#      env: >-
-#        HOST=x86_64-apple-darwin14
-#        PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev python3-setuptools-git"
-#        OSX_SDK=10.11
-#        GOAL="all deploy"
-#        BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror"
-#    - stage: lint
-#      env:
-#      sudo: false
-#      cache: false
-#      language: python
-#      python: '3.6'
-#      install:
-#        - travis_retry pip install flake8
-#      before_script:
+    - stage: test
+      env: >-
+        HOST=x86_64-apple-darwin14
+        PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev python3-setuptools-git"
+        OSX_SDK=10.11
+        GOAL="all deploy"
+        BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror"
+    - stage: lint
+      env:
+      sudo: false
+      cache: false
+      language: python
+      python: '3.6'
+      install:
+        - travis_retry pip install flake8
+      before_script:
 #        - git fetch --unshallow
-#      script:
-#        - if [ "$TRAVIS_EVENT_TYPE" = "pull_request" ]; then test/lint/commit-script-check.sh $TRAVIS_COMMIT_RANGE; fi
+      script:
+        - if [ "$TRAVIS_EVENT_TYPE" = "pull_request" ]; then test/lint/commit-script-check.sh $TRAVIS_COMMIT_RANGE; fi
 #        - test/lint/git-subtree-check.sh src/crypto/ctaes
 #        - test/lint/git-subtree-check.sh src/secp256k1
 #        - test/lint/git-subtree-check.sh src/univalue
 #        - test/lint/git-subtree-check.sh src/leveldb
-#        - test/lint/check-doc.py
+        - test/lint/check-doc.py
 #        - test/lint/check-rpc-mappings.py .
 #        - test/lint/lint-all.sh
 #        - if [ "$TRAVIS_REPO_SLUG" = "bitcoin/bitcoin" -a "$TRAVIS_EVENT_TYPE" = "cron" ]; then
