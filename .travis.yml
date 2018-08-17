@@ -82,7 +82,7 @@ jobs:
       install:
         - travis_retry pip3 install flake8 --user
       before_script:
-        - git fetch --unshallow
+        #- git fetch --unshallow
       script:
         - contrib/devtools/git-subtree-check.sh src/univalue
         # Remove this comment and the `#` from the following two lines when we merge proper subtree implementations for secp256k1 and leveldb
