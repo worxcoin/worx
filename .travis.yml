@@ -93,7 +93,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: CryptoDragonLady/worx
-
+    tags: true
 
 
 
