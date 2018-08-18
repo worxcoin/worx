@@ -90,6 +90,9 @@ deploy:
   api_key:
     secure: SrIFjyo6R5dYkmGM5/MA4qnzmw++kO2Ri/kIZ7WFKkX4VJpUV7OH3lv3GaXP1wjwI0Ic4TBMwoy1CmZad0PJKXSOsPz2zSg5jE34Ty8TtWqP5D/j9QMMHEmdofNqewROvh3W+/lISVlGY3w7L06k9DCxZDpPRB/mWBlAeyTb2TFj0Sohf1dCykvenTAbDZ8frt5ZESVFSp7YQDYW4gs3+VknMucq0ukJemDIwGKFmH8muVLeO5uSh+EHNsunKxUN4nx1ZmAJfhFUh3r/bc+4nkdxGBYjEL8daAd2hWY419myzDOx7eC1xzOJjImjW+lWGT2YwB467R5olEo22Wk5onMUWu2sgGeSnhNkMpwRaV4uA18L2+iaV9WUfr5OYJpiiPrPwsaZVhg4DlAEvMdRKyD0lXkgSc4Bq8WBYwqIOonAugEMy3qRhy4derdohpV75Y78HJKkRCSKOIeGtoH3WSl0ZiBhwttHHkzMcwD0+s8JyqQgQC/5HGGHQJPdmxjQYn/iGAeJCiztXS44ICj7R15otOzz3x0DEaLksYLXH8zP6Ke+Xo+GRTPnCB9J9uCDJasLxk1icJzAAZ36mvhYhkReIX1Ss1q3TFUFOjFKoY2k1rMNIlQLlR0dbChoEvWaP9JzwfJT6zNQaTe8vXqofVxvT2BPG5vOKFmg0AicUFo=
   file: 'worx-$HOST'
+  skip_cleanup: true
   on:
     repo: CryptoDragonLady/worx
+
+
 
