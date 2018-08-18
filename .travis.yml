@@ -85,16 +85,17 @@ script:
 after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
-    before_deploy:
+    
+before_deploy:
       # Set up git user name and tag this commit
-      - git config --local cryptodragonlady "cryptodraonlady"
-      - git config --local dragonlady@coinbotvps.com "dragonlady@coinbotvps.com"
-      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-    deploy:
-      provider: releases
-    api_key:
-      secure: wjeOwJcH9cUdFJ5lPYrSunC7QqekZWIKwA9TA3Egoz48/L4EX4sKWDFJlPXKLeZXKjZurmK8+pE2vmXxYSDCixsi8c6oWFrxxRlArPTRXhHdJeaUeMo4nQORv2vlVJnrI1Mbi9vyow0y9LMYneoi0tFwDa2AIdjGz7+wFGtixVZkV9THAoNxQJN+qr0LaLeGhGK0r2pBhctpGJW5iQ0aQWmaW7CEQHcaEmN1N5VJSxyyin87UO51t3ld/oK06MNpN4xO9zNlrxDScq1a2lf6Q70IqabeNR7to6/WBPataXuWT4wItILH6IiX9utMBC3NxYOuwfu9mp3FU6SeknJpGVdF3/LqQ4wehHmP80ezOaBdSPgwj12FQEnPrfyTO4LxgBnAEUfeZMUXTSG5+JXDdH5jklDn+3/0iZ4MugGF8hebauefwZBNixbAg74gkC+4Xw0QCiXr5ZGK+pwnHowvmcP3yTwrjntuORWPPmLd8XLUxLbCh/YJz+gPCjojqgcRjSl+lnl6gvN5EFzV/sOF7Z7GKFTI2t+X/tLRFtwpatQ675iy4i6fyLvDgRapsKkL3wUJ6IS4EGje9e5bUPR5Uwb8X3kedPeNUEJ0GKT9lvyIk9sWG5dAUCW5ymzWX0QqJBt9VaYkR4LPYduJ5yv9mKxd9I4RrQHdVrerZppIRdk=
-    file: "FILE TO UPLOAD"
-    skip_cleanup: true
-    on:
-      repo: CryptoDragonLady/worx
+- git config --local cryptodragonlady "cryptodraonlady"
+- git config --local dragonlady@coinbotvps.com "dragonlady@coinbotvps.com"
+- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+deploy:
+ provider: releases
+ api_key:
+ secure: wjeOwJcH9cUdFJ5lPYrSunC7QqekZWIKwA9TA3Egoz48/L4EX4sKWDFJlPXKLeZXKjZurmK8+pE2vmXxYSDCixsi8c6oWFrxxRlArPTRXhHdJeaUeMo4nQORv2vlVJnrI1Mbi9vyow0y9LMYneoi0tFwDa2AIdjGz7+wFGtixVZkV9THAoNxQJN+qr0LaLeGhGK0r2pBhctpGJW5iQ0aQWmaW7CEQHcaEmN1N5VJSxyyin87UO51t3ld/oK06MNpN4xO9zNlrxDScq1a2lf6Q70IqabeNR7to6/WBPataXuWT4wItILH6IiX9utMBC3NxYOuwfu9mp3FU6SeknJpGVdF3/LqQ4wehHmP80ezOaBdSPgwj12FQEnPrfyTO4LxgBnAEUfeZMUXTSG5+JXDdH5jklDn+3/0iZ4MugGF8hebauefwZBNixbAg74gkC+4Xw0QCiXr5ZGK+pwnHowvmcP3yTwrjntuORWPPmLd8XLUxLbCh/YJz+gPCjojqgcRjSl+lnl6gvN5EFzV/sOF7Z7GKFTI2t+X/tLRFtwpatQ675iy4i6fyLvDgRapsKkL3wUJ6IS4EGje9e5bUPR5Uwb8X3kedPeNUEJ0GKT9lvyIk9sWG5dAUCW5ymzWX0QqJBt9VaYkR4LPYduJ5yv9mKxd9I4RrQHdVrerZppIRdk=
+ file: "FILE TO UPLOAD"
+ skip_cleanup: true
+ on:
+   tags: true
