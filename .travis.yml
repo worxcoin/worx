@@ -65,6 +65,8 @@ before_script:
   fi
 - if [ -n "$OSX_SDK" -a -f depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz ]; then
   tar -C depends/SDKs -xf depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz; fi
+- echo -e $MAKEJOBS $HOST $DEP_OPTS
+- echo -e $PYZMQ $OSX_SDK $PPA $PACKAGES $PATH $OUTDIR $USE_SHELL $GOAL
 - make $MAKEJOBS -C depends HOST=$HOST $DEP_OPTS
 script:
 - export TRAVIS_COMMIT_LOG=`git log --format=fuller -1`
