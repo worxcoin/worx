@@ -89,6 +89,7 @@ script:
 after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
+- ls -al $OUTDIR
 deploy:
   provider: releases
   api_key:
