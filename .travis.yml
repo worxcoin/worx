@@ -1,5 +1,5 @@
 sudo: required
-dist: xenial
+dist: trusty
 os: linux
 language: generic
 cache:
@@ -30,27 +30,26 @@ env:
   - REMOTEHOST=88.198.86.0
   - PORT=8080
   matrix:
-  - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf libzmq5-dev libzmq5-dbg libzmq5" DEP_OPTS="NO_QT=1"
+  - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf" DEP_OPTS="NO_QT=1"
     CHECK_DOC=1 GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
   - HOST=i686-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=0" PACKAGES="python3
     python3-dev python3-pip nsis g++-mingw-w64-i686 wine1.6 bc nsis wine1.6 bc build-essential
     libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick qtbase5-dev
-    curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev
-    libzmq5-dev libzmq5-dbg libzmq5" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports --enable-gui"
-  - HOST=i686-pc-linux-gnu PACKAGES="g++-multilib bc python3-pip python3-dev python3-zmq libzmq5-dev
-    libzmq5-dbg libzmq5" DEP_OPTS="NO_QT=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-zmq
+    curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev"
+    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports --enable-gui"
+  - HOST=i686-pc-linux-gnu PACKAGES="g++-multilib bc python3-pip python3-dev"
+    DEP_OPTS="NO_QT=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-zmq
     --enable-glibc-back-compat --enable-reduce-exports LDFLAGS=-static-libstdc++"
     USE_SHELL="/bin/dash" PYZQM=true
   - HOST=x86_64-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3
     python3-dev python3-pip nsis g++-mingw-w64-x86-64 wine1.6 bc libzmq-dev" RUN_TESTS=false
     GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
-  - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-zmq python3-dev python3-pip libzmq5-dev
-    libzmq5-dbg libzmq5" DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=false GOAL="install" 
-    BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports CPPFLAGS=-DDEBUG_LOCKORDER"
+  - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-dev python3-pip"
+    DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=false GOAL="install" 
+    BITCOIN_CONFIG="--disable-zmq --enable-glibc-back-compat --enable-reduce-exports CPPFLAGS=-DDEBUG_LOCKORDER"
     PYZMQ=true
-  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libzmq5-dev libzmq-dbg libzmq
-    libz-dev libbz2-dev libtiff-tools python3-dev python3-zmq" BITCOIN_CONFIG="--enable-gui --enable-reduce-exports
-    --enable-werror --enable-sse2" OSX_SDK=10.11 GOAL="deploy"
+  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev" 
+    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.11 GOAL="deploy"
 before_install:
 - openssl aes-256-cbc -K $encrypted_96e672130830_key -iv $encrypted_96e672130830_iv
   -in deploy.enc -out deploy -d
