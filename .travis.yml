@@ -98,11 +98,12 @@ before_deploy:
     #- rm /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/test
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worxd
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-qt
+    #Leaving directory /home/travis/build/CryptoDragonLady/worx/build/worx-arm-linux-gnueabihf/src
     - mkdir /home/travis/build/CryptoDragonLady/worx/$BNAME
-    - mv /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worxd /home/travis/build/CryptoDragonLady/worx/$BNAME/
-    - if [ "$NO_QT" = "0" ]; then mv /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-qt /home/travis/build/CryptoDragonLady/worx/$BNAME/; fi
-    - mv /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-cli /home/travis/build/CryptoDragonLady/worx/$BNAME/
-    - mv /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-tx /home/travis/build/CryptoDragonLady/worx/$BNAME/
+    - mv /home/travis/build/CryptoDragonLady/worx/build	/$HOST/src/worxd /home/travis/build/CryptoDragonLady/worx/$BNAME/
+    - if [ "$NO_QT" = "0" ]; then mv /home/travis/build/CryptoDragonLady/worx/$HOST/src/worx-qt /home/travis/build/CryptoDragonLady/worx/$BNAME/; fi
+    - mv /home/travis/build/CryptoDragonLady/worx/build/$HOST/src/worx-cli /home/travis/build/CryptoDragonLady/worx/$BNAME/
+    - mv /home/travis/build/CryptoDragonLady/worx/build/$HOST/src/worx-tx /home/travis/build/CryptoDragonLady/worx/$BNAME/
     - cd /home/travis/build/CryptoDragonLady/worx && tar -cf $BNAME.tar $BNAME && gzip -9 $BNAME.tar
 deploy:
   provider: releases
