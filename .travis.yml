@@ -113,7 +113,7 @@ after_success:
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME
 - if [ -n "$OSX_SDK" ]; then cp ./build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
 - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
-  if [ -z "$OSX_SDK" ]; then tar -cf $RNAME.tar $RNAME && gzip -9 $RNAME.tar; fi
+- if [ -z "$OSX_SDK" ]; then tar -cf $RNAME.tar $RNAME && gzip -9 $RNAME.tar; fi
 - ls -al /home/travis/build/CryptoDragonLady/worx/.*
 - if [ -n "$OSX_SDK" ]; then "./scripts/relpush.sh /home/travis/build/CryptoDragonLady/worx/$RNAME/Worx-Core.dmg"; fi
 - if [ -z "$OSX_SDK" ]; then "./scripts/relpush.sh /home/travis/build/CryptoDragonLady/worx/$RNAME.tar.gz"; fi
