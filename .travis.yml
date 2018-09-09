@@ -103,13 +103,16 @@ after_script:
 before_deploy:
 - cd /home/travis/build/CryptoDragonLady/worx/; find . |grep tar.gz
 - find . |grep dmg
+- if [ -n "$OSX_SDK" ]; then cp ./$RNAME/Worx-Core.dmg ./$RNAME.dmg; fi
+- if [ -n "$OSX_SDK" ]; then ./scripts/relpush.sh $RNAME.dmg; fi
+- if [ -z "$OSX_SDK" ]; then ./scripts/relpush.sh $RNAME.tar.gz; fi
 after_success:
 - export RNAME=$HOST-$BVER
 - export OUTDIR=/home/travis/build/CryptoDragonLady/worx/$RNAME
 - git config --local user.name "CryptoDragonLady"
 - git config --local user.email "webmaster@worxcoin.io"
-- export RNAME=$RNAME-$(git log --format=%h -1)
 - git tag "$RNAME-$(git log --format=%h -1)"
+- export RNAME=$RNAME-$(git log --format=%h -1)
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME
 - if [ -n "$OSX_SDK" ]; then cp ./build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
 - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
