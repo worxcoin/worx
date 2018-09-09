@@ -100,19 +100,6 @@ after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
 - ls -al $OUTDIR
-before_deploy:
-- export BNAME=$HOST-$BVER
-- export OUTDIR=/home/travis/build/CryptoDragonLady/worx/$BNAME
-- git config --local user.name "CryptoDragonLady"
-- git config --local user.email "webmaster@worxcoin.io"
-- export BNAME=$BNAME-$(git log --format=%h -1)
-- mkdir /home/travis/build/CryptoDragonLady/worx/$BNAME
-- if [ -n "$OSX_SDK" ]; then cp ./build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$BNAME/; cd /home/travis/build/CryptoDragonLady/worx/$BNAME/; fi
-- if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$BNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
-  if [ -z "$OSX_SDK" ]; then tar -cf $BNAME.tar $BNAME && gzip -9 $BNAME.tar; fi
-- ls -al /home/travis/build/CryptoDragonLady/worx/.*
-- if [ -n "$OSX_SDK" ]; then "./scripts/relpush.sh /home/travis/build/CryptoDragonLady/worx/$BNAME/Worx-Core.dmg"; fi
-- if [ -z "$OSX_SDK" ]; then "./scripts/relpush.sh /home/travis/build/CryptoDragonLady/worx/$BNAME.tar.gz"; fi
 after_success:
 - export RNAME=$HOST-$BVER
 - export OUTDIR=/home/travis/build/CryptoDragonLady/worx/$RNAME
