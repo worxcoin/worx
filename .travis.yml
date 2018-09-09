@@ -91,6 +91,7 @@ after_script:
 - ls -al $OUTDIR
 before_deploy:
     - export BNAME=$HOST-$BVER
+    - export OUTDIR=/home/travis/build/CryptoDragonLady/worx/$BNAME
     - git config --local user.name "CryptoDragonLady"
     - git config --local user.email "webmaster@worxcoin.io"
     - git tag "$BNAME-$(git log --format=%h -1)"
