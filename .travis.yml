@@ -114,7 +114,7 @@ after_success:
 - git tag "$RNAME-$(git log --format=%h -1)"
 - export RNAME=$RNAME-$(git log --format=%h -1)
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME
-- if [ -n "$OSX_SDK" ]; then cp ./build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
+- if [ -n "$OSX_SDK" ]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
 - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
 - if [ -z "$OSX_SDK" ]; then tar -cf $RNAME.tar $RNAME && gzip -9 $RNAME.tar; fi
 - ls -al /home/travis/build/CryptoDragonLady/worx/$RNAME/.*
