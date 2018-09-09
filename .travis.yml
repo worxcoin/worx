@@ -91,9 +91,10 @@ after_script:
 - ls -al $OUTDIR
 before_deploy:
     - export BNAME=$HOST-$BVER
-    - git config --local user.name "WorxCoin"
+    - git config --local user.name "CryptoDragonLady"
     - git config --local user.email "webmaster@worxcoin.io"
-    - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+    - git tag "$BNAME-$(git log --format=%h -1)"
+    - ls -al /home/travis/build/CryptoDragonLady/worx/
     #- rm /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/test
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worxd
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-qt
@@ -101,6 +102,7 @@ before_deploy:
     - mkdir /home/travis/build/CryptoDragonLady/worx/$BNAME
     - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$BNAME/; cd /home/travis/build/CryptoDragonLady/worx; tar -cf $BNAME.tar $BNAME && gzip -9 $BNAME.tar; fi
     - if [ -n "$OSX_SDK" ]; then find . ; fi 
+    - ls -al /home/travis/build/CryptoDragonLady/worx/$BNAME
 deploy:
   provider: releases
   api_key:
