@@ -95,7 +95,7 @@ before_deploy:
     - git config --local user.name "WorxCoin"
     - git config --local user.email "webmaster@worxcoin.io"
     - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-    - rm /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/test*
+    #- rm /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/test
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worxd
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-qt
     - mkdir /home/travis/build/CryptoDragonLady/worx/$BNAME
