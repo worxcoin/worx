@@ -99,7 +99,7 @@ before_deploy:
     #- strip /home/travis/build/CryptoDragonLady/worx/out/false/*/bin/worx-qt
     #Leaving directory /home/travis/build/CryptoDragonLady/worx/build/worx-arm-linux-gnueabihf/src
     - mkdir /home/travis/build/CryptoDragonLady/worx/$BNAME
-    - if [ -z "$OSX_SDK" ]; then mv /bin/worx* /home/travis/build/CryptoDragonLady/worx/$BNAME/; cd /home/travis/build/CryptoDragonLady/worx; tar -cf $BNAME.tar $BNAME && gzip -9 $BNAME.tar; fi
+    - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$BNAME/; cd /home/travis/build/CryptoDragonLady/worx; tar -cf $BNAME.tar $BNAME && gzip -9 $BNAME.tar; fi
     - if [ -n "$OSX_SDK" ]; then find . ; fi 
 deploy:
   provider: releases
