@@ -1,9 +1,9 @@
  Anonymized transactions using coin mixing technology. 1-Second-Transactions. Network stability with masternodes, each is secured with a collateral of 1000 WORX.
 
-For further information visit us at [worx.world](https://worx.world/) or visit our ANN thread at [BitcoinTalk](TBA)
+For further information visit us at [worx.world](https://worx.world/) [worxcoin.io](https://worxcoin.io/) or visit our ANN thread at [BitcoinTalk](TBA)
 
 # Masternode Setup Guide  
-**[Cold Guide](http://worx.world/assets/setupguides/Cold_Wallet_Guide.pdf) | [Hot Guide](http://worx.world/assets/setupguides/Hot_Wallet_Guide.pdf) | [Easy Install Script](https://github.com/zoldur/Worx/blob/master/README.md)**
+**[Cold Guide](http://worx.world/assets/setupguides/Cold_Wallet_Guide.pdf) | [Hot Guide](http://worx.world/assets/setupguides/Hot_Wallet_Guide.pdf) | [Easy Install Script](https://github.com/worxcoin/WorxInstaller/blob/master/README.md)**
 
 # Coin Specs
 
@@ -89,10 +89,29 @@ _Proof of Stake will automatically be enabled at block 1441._
   <tr>
     <td>Phase 8</td>
     <td>172801-201600</td>
-    <td>28 WORX</td>
+    <td>10 WORX</td>
+    <td>80%</td>
+    <td>20%</td>
+  </tr>
+  <tr>
+    <td>Phase 9</td>
+    <td>201601-460800</td>
+    <td>8 WORX</td>
+    <td>80%</td>
+    <td>20%</td>
+  </tr>
+  <tr>
+    <td>Phase 10</td>
+    <td>460801-986400</td>
+    <td>6 WORX</td>
+    <td>80%</td>
+    <td>20%</td>
+  </tr>
+  <tr>
+    <td>Phase 11</td>
+    <td>986401-end</td>
+    <td>3 WORX</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
 </table>
-
-
