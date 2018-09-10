@@ -29,6 +29,7 @@ env:
   - REMOTEUSER=worx
   - REMOTEHOST=88.198.86.0
   - PORT=8080
+  - PPA="ppa:bitcoin/bitcoin"
   matrix:
   - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf" DEP_OPTS="NO_QT=1"
     CHECK_DOC=1 GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports"
