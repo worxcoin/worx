@@ -115,9 +115,10 @@ before_deploy:
 - cd /home/travis/build/CryptoDragonLady/worx/; find . |grep tar.gz
 - find . |grep dmg
 - if [ -n "$OSX_SDK" ]; then cp ./$RNAME/Worx-Core.dmg ./$RNAME.dmg; fi
-- if [ -n "$OSX_SDK" ]; then ./scripts/relpush.sh $RNAME.dmg; export FRNAME=$RNAME.dmg; fi
-- if [ -z "$OSX_SDK" ]; then ./scripts/relpush.sh $RNAME.tar.gz; export FRNAME=$RNAME.tar.gz; fi
+- if [ -n "$OSX_SDK" ]; then ./scripts/relpush.sh $RNAME.dmg; export FRNAME=$RNAME.dmg ; fi
+- if [ -z "$OSX_SDK" ]; then ./scripts/relpush.sh $RNAME.tar.gz; export FRNAME=$RNAME.tar.gz ; fi
 - ssh worx@88.198.86.0 "/var/www/files.worxcoin.io/htdocs/reldir.sh $GITCOM"
+- echo $FRNAME $GITCOM
 - ssh worx@88.198.86.0 "/var/www/files.worxcoin.io/htdocs/relmove.sh $FRNAME $GITCOM"
 after_success:
 - export RNAME=$HOST-$BVER
