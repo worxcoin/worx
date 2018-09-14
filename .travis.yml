@@ -67,6 +67,8 @@ before_install:
   -in deploy.enc -out deploy -d
 - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" |
   sed "s|::|:|g")
+- export BDB_INCLUDE_PATH="/usr/local/Berkeley.DB.4.8/include"
+- export BDB_LIB_PATH="/usr/local/Berkeley.DB.4.8/lib"
 install:
 - if [ -n "$PPA" ]; then travis_retry sudo add-apt-repository "$PPA" -y; fi
 - if [ -n "$DPKG_ADD_ARCH" ]; then sudo dpkg --add-architecture "$DPKG_ADD_ARCH" ;
@@ -74,8 +76,7 @@ install:
 - if [ -n "$PACKAGES" ]; then travis_retry sudo apt-get update; fi
 - if [ -n "$PACKAGES" ]; then travis_retry sudo apt-get install --no-install-recommends
   --no-upgrade -qq $PACKAGES; fi
-- export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.4.8/include"
-- export BDB_LIB_PATH="/usr/local/BerkeleyDB.4.8/lib"
+- ls -al /usr/local/Berkeley*
 before_script:
 - unset CC; unset CXX
 - if [ "$CHECK_DOC" = 1 ]; then contrib/devtools/check-doc.py; fi
