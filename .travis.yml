@@ -76,7 +76,6 @@ install:
   --no-upgrade -qq $PACKAGES; fi
 - export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.4.8/include"
 - export BDB_LIB_PATH="/usr/local/BerkeleyDB.4.8/lib"
-- ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so
 before_script:
 - unset CC; unset CXX
 - if [ "$CHECK_DOC" = 1 ]; then contrib/devtools/check-doc.py; fi
