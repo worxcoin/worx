@@ -76,7 +76,7 @@ install:
   --no-upgrade -qq $PACKAGES; fi
 - export BDB_INCLUDE_PATH="/usr/include"
 - export BDB_LIB_PATH="/usr/lib"
-- mkdir /usr/include/db4; cp /usr/include/db_cxx.h /usr/include/db4/
+- sudo mkdir /usr/include/db4; sudo cp /usr/include/db_cxx.h /usr/include/db4/
 - ls -al /usr/include/*db*
 - ls -al /usr/lib/*db*
 before_script:
