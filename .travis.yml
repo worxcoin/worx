@@ -42,16 +42,16 @@ env:
     RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-gui-tests --disable-maintainer-mode --disable-bench --enable-reduce-exports --enable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
 
   - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="" PACKAGES="g++-multilib python3 python3-dev 
-    python3-pip nsis g++-mingw-w64-i686 bc faketime wine-development bc build-essential libc6-dev libtool autotools-dev automake 
+    python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake 
     cmake pkg-config bsdmainutils imagemagick libzmq3-dev libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev 
     qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev 
-    libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools 
-    libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler g++-mingw-w64-i686 libqrencode-dev flex libelf-dev libdwarf-dev 
+    libevent-dev libboost-system-dev libboost-filesystem-dev  
+    libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev 
     ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev
-    default-libmysqlclient-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+    firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
     RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --enable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
     #MAKE_PREFIX_PATH="/usr/include/x86_64-linux-gnu/qt5
-  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6"
+  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6"
     RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
 #  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6 libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler"
 #    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports --with-gui"
@@ -65,7 +65,7 @@ env:
 #    PYZMQ=true
   - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-dev python3-pip libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev"
     DEP_OPTS="" RUN_TESTS=false GOAL="install" 
-    BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports --with-gui=qt5 CPPFLAGS=-DDEBUG_LOCKORDER "
+    BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports --with-gui=auto CPPFLAGS=-DDEBUG_LOCKORDER "
     PYZMQ=true
     #MAKE_PREFIX_PATH="x/usr/include/x86_64-linux-gnu/qt5"
   - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev
@@ -146,7 +146,7 @@ after_success:
 - export GITCOM=$(git log --format=%h -1)
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME/lib
-- if [ -n "$OSX_SDK" ]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/w$
+- if [ -n "$OSX_SDK" ]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
 - if [ -z "$OSX_SDK" ]; then cp /lib/libbitcoin* /home/travis/build/CryptoDragonLady/worx/$RNAME/lib/; ls /lib; fi
 - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
 - if [ -z "$OSX_SDK" ]; then tar -cf $RNAME.tar $RNAME && gzip -9 $RNAME.tar; fi
