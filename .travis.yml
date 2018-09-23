@@ -117,6 +117,7 @@ script:
   ( cat config.log && false)"
 - pwd ; echo script_make2
 - ls
+- cd ..
 - sudo make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && sudo
   make $GOAL V=1 ; false )
 - export LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib
@@ -125,7 +126,9 @@ script:
 after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
-- ls -al $OUTDIR
+- pwd
+- echo `pwd`
+- 
 before_deploy:
 - cd /home/travis/build/CryptoDragonLady/worx/; find . |grep tar.gz
 - find . |grep dmg
