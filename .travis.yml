@@ -47,7 +47,7 @@ env:
     qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev 
     libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools 
     libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler g++-mingw-w64-i686 libqrencode-dev flex libelf-dev libdwarf-dev 
-    lib32stdc++6-8-dbg libx32stdc++6-8-dbg gcc-7-locales qt5-qmltooling-plugins ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi 
+    lib32stdc++6-8-dbg libx32stdc++6-8-dbg gcc-7-locales qt5-qmltooling-plugins ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev
     default-libmysqlclient-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev wine32-development-preloader:i386 libkf5xmlgui-bin"
     RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --enable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++ -DMAKE_PREFIX_PATH=/usr/include/x86_64-linux-gnu/qt5" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib" 
 
@@ -94,6 +94,8 @@ before_script:
   tar -C depends/SDKs -xf depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz; fi
 - echo -e $MAKEJOBS $HOST $DEP_OPTS
 - echo -e $PYZMQ $OSX_SDK $PPA $PACKAGES $PATH $OUTDIR $USE_SHELL $GOAL
+- pwd ; echo before_script make1
+- ls
 - sudo make $MAKEJOBS -C depends HOST=$HOST $DEP_OPTS
 - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
 script:
@@ -107,10 +109,14 @@ script:
 - mkdir build && cd build
 - "../configure --cache-file=config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || (
   cat config.log && false)"
+- pwd ; echo script_make1
+- ls
 - make distdir VERSION=$HOST
 - cd worx-$HOST
 - "./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG ||
   ( cat config.log && false)"
+- pwd ; echo script_make2
+- ls
 - sudo make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && sudo
   make $GOAL V=1 ; false )
 - export LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib
