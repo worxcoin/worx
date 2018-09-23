@@ -147,7 +147,9 @@ after_success:
 - export RNAME=$RNAME-$(git log --format=%h -1)-$RBITS
 - export GITCOM=$(git log --format=%h -1)
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME
+- mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME/lib
 - if [ -n "$OSX_SDK" ]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
+- if [ -z "$OSX_SDK" ]; then cp /lib/libbitcoin* /home/travis/build/CryptoDragonLady/worx/$RNAME/lib/; fi
 - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
 - if [ -z "$OSX_SDK" ]; then tar -cf $RNAME.tar $RNAME && gzip -9 $RNAME.tar; fi
 - ls -al /home/travis/build/CryptoDragonLady/worx/$RNAME/.*
