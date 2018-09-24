@@ -1639,14 +1639,16 @@ if( nHeight >= 1 && nHeight <= 1440 ) {
         nSubsidy = 20 * COIN;
     } else if (nHeight >= 144001 && nHeight <= 172800) {
         nSubsidy = 24 * COIN;
-    } else if (nHeight >= 172801 && nHeight <= 201600) {
+    } else if (nHeight >= 172801 && nHeight <= 313800) {
         nSubsidy = 10 * COIN;
-    } else if (nHeight >= 201601 && nHeight <= 460800) {
+    } else if (nHeight >= 313801 && nHeight <= 573000) {
         nSubsidy = 8 * COIN;
-    } else if (nHeight >= 460801 && nHeight <= 986400) {
+    } else if (nHeight >= 573001 && nHeight <= 1098600) {
         nSubsidy = 6 * COIN;
-    } else if (nHeight >= 986400) {
-        nSubsidy = 1 * COIN;
+    } else if (nHeight >= 1098601 && nHeight <= 4332793) {
+        nSubsidy = 3 * COIN;
+    } else if (nHeight >= 4332794) {
+        nSubsidy = 0 * COIN;
     }    return nSubsidy;
 }
 
@@ -5400,11 +5402,12 @@ int ActiveProtocol()
 
     // SPORK_15 is used for 70910. Nodes < 70910 don't see it and still get their protocol version via SPORK_14 and their 
     // own ModifierUpgradeBlock()
+ if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) && chainActive.Height() > 201600) {
+                return MIN_PEER_PROTO_VERSION_AFTER_BLOCK_201601;
+        } else {
+                return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+        }
  
-    if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
-            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
-
-    return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
 }
 
 // requires LOCK(cs_vRecvMsg)

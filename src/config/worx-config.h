@@ -18,13 +18,13 @@
 #define CLIENT_VERSION_MAJOR 1
 
 /* Minor version */
-#define CLIENT_VERSION_MINOR 2
+#define CLIENT_VERSION_MINOR 3
 
 /* Build revision */
 #define CLIENT_VERSION_REVISION 0
 
 /* Version is release */
-#define COPYRIGHT_YEAR 2017
+#define COPYRIGHT_YEAR 2018
 
 /* Define to 1 to enable wallet functions */
 #define ENABLE_WALLET 1
@@ -274,13 +274,13 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://worx.org"
+#define PACKAGE_BUGREPORT "https://www.worxcoin.io"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Worx Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Worx Core 2.0.0"
+#define PACKAGE_STRING "Worx Core 1.3.0.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "worx"
@@ -289,7 +289,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.0.0"
+#define PACKAGE_VERSION "1.3.0.2"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
