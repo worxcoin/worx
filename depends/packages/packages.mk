@@ -1,4 +1,4 @@
-packages:=boost openssl libevent zeromq qt expat dbus libxcb xcb_proto libXau xproto freetype fontconfig libX11 xextproto libXext xtrans
+packages:=boost openssl libevent zeromq qt expat dbus #libxcb xcb_proto libXau xproto freetype fontconfig libX11 xextproto libXext xtrans
 native_packages := native_ccache
 
 qt_native_packages = native_protobuf
