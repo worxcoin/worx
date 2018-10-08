@@ -142,10 +142,10 @@ define $(package)_preprocess_cmds
   mkdir -p qtbase/mkspecs/aarch64-linux-gnu &&\
   cp -f qtbase/mkspecs/linux-arm-gnueabi-g++/qplatformdefs.h qtbase/mkspecs/aarch64-linux-gnu/ &&\
   cp -f $($(package)_patch_dir)/aarch64-qmake.conf qtbase/mkspecs/aarch64-linux-gnu/qmake.conf &&\
-  patch -p1 < $($(package)_patch_dir)/mingw-uuidof.patch && \
-  patch -p1 < $($(package)_patch_dir)/pidlist_absolute.patch && \
-  patch -p1 < $($(package)_patch_dir)/fix-xcb-include-order.patch && \
-  patch -p1 < $($(package)_patch_dir)/fix_qt_pkgconfig.patch && \
+  #patch -p1 < $($(package)_patch_dir)/mingw-uuidof.patch && \
+  #patch -p1 < $($(package)_patch_dir)/pidlist_absolute.patch && \
+  #patch -p1 < $($(package)_patch_dir)/fix-xcb-include-order.patch && \
+  #patch -p1 < $($(package)_patch_dir)/fix_qt_pkgconfig.patch && \
   echo "!host_build: QMAKE_CFLAGS     += $($(package)_cflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_CXXFLAGS   += $($(package)_cxxflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_LFLAGS     += $($(package)_ldflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
