@@ -1,5 +1,5 @@
 PACKAGE=qt
-$(package)_version=5.9.0
+$(package)_version=5.9.1
 $(package)_download_path=http://download.qt.io/archive/qt/5.9/$($(package)_version)/submodules
 $(package)_suffix=opensource-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
