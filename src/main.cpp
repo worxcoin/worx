@@ -3608,7 +3608,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
             pwalletMain->AutoCombineDust();
     }
 
-    LogPrintf"("%s : ACCEPTED\n", __func__);
+    LogPrintf("%s : ACCEPTED\n", __func__);
 
     return true;
 }
