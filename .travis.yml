@@ -63,7 +63,6 @@ env:
 #    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.8 GOAL="deploy"
 #  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler" 
 #    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.13 GOAL="deploy"
->>>>>>> e1d17ca5b2b18a28dfed3311a3ad15fcd9aff864
 before_install:
 - openssl aes-256-cbc -K $encrypted_96e672130830_key -iv $encrypted_96e672130830_iv -in deploy.enc -out deploy -d
 - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
