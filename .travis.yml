@@ -32,43 +32,38 @@ env:
   - PPA="ppa:bitcoin/bitcoin"
   - RBITS=$(cat /dev/urandom | head -c 64 | base64 | tr -cd '[:alnum:]' | head -c 8 ;) 
   matrix:
-  - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf"
-    CHECK_DOC=1 GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports --with-gui=auto --disable-maintainer-mode"
-  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=0" PACKAGES="python3
+#  - HOST=arm-linux-gnueabihf PACKAGES="g++-arm-linux-gnueabihf"
+#    CHECK_DOC=1 GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat --enable-reduce-exports --with-gui=auto --disable-maintainer-mode --disable-zmq"
+  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="" PACKAGES="python3
     python3-dev python3-pip nsis g++-mingw-w64-i686 bc faketime wine1.6 bc build-essential libc6-dev
-    libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libzmq3-dev libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools
-    libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev
-    libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev"
-    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --enable-zmq --enable-gui --with-gui=qt5 LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
-
-  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="" PACKAGES="g++-multilib python3 python3-dev 
-    python3-pip nsis g++-mingw-w64-i686 bc faketime wine-development bc build-essential libc6-dev libtool autotools-dev automake 
-    cmake pkg-config bsdmainutils imagemagick libzmq3-dev libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev 
-    qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev 
-    libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools 
-    libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler g++-mingw-w64-i686 libqrencode-dev flex libelf-dev libdwarf-dev 
-    lib32stdc++6-8-dbg libx32stdc++6-8-dbg gcc-7-locales qt5-qmltooling-plugins ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev
-    default-libmysqlclient-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev wine32-development-preloader:i386 libkf5xmlgui-bin"
-    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --enable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib" 
-
-  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6"
-    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
-#  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6 libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler"
-#    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports --with-gui"
-  - HOST=i686-pc-linux-gnu PACKAGES="g++-multilib bc python3-pip python3-dev"
-    DEP_OPTS="NO_QT=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-zmq --enable-glibc-back-compat --enable-reduce-exports LDFLAGS=-static-libstdc++" USE_SHELL="/bin/dash" PYZQM=true
-#  - HOST=x86_64-w64-mingw32 DPKG_ADD_ARCH="i386" DEP_OPTS="NO_QT=1" PACKAGES="python3 python3-dev python3-pip nsis g++-mingw-w64-x86-64 wine1.6 bc libzmq-dev" RUN_TESTS=false
-#    GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
-#  - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-dev python3-pip"
-#    DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=false GOAL="install" 
-#    BITCOIN_CONFIG="--disable-zmq --enable-glibc-back-compat --enable-reduce-exports CPPFLAGS=-DDEBUG_LOCKORDER"
+    libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev curl g++-mingw-w64-x86-64 
+    mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libminiupnpc-dev libqrencode-dev flex libelf-dev libdwarf-dev"
+    RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--disable-gui-tests --disable-maintainer-mode --disable-bench --enable-reduce-exports --disable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
+  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DPKG_ADD_ARCH="i386" DEP_OPTS="" PACKAGES="g++-multilib python3 python3-dev python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libboost-system-dev libboost-filesystem-dev libminiupnpc-dev  libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+    RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --disable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
+  - HOST=x86_64-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DEP_OPTS="" PACKAGES="g++-multilib python3 python3-dev python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libboost-system-dev libboost-filesystem-dev libminiupnpc-dev  libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+    RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --disable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
+#  - HOST=i686-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DEP_OPTS="" PACKAGES="g++-multilib python3 python3-dev python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libboost-system-dev libboost-filesystem-dev libminiupnpc-dev  libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+#    RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --disable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
+#  - HOST=x86_64-w64-mingw32 PPA="ppa:bitcoin/bitcoin" DEP_OPTS="" PACKAGES="g++-multilib python3 python3-dev python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libboost-system-dev libboost-filesystem-dev libminiupnpc-dev  libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+#    RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-reduce-exports --disable-zmq --enable-gui --with-gui=auto LDFLAGS=-static-libstdc++" BDB_INCLUDE_PATH="/usr/include" BDB_LIB_PATH="/usr/lib"
+#  - HOST=x86_64-linux-gnu PPA="ppa:bitcoin/bitcoin" DEP_OPTS="" PACKAGES="python3 nsis g++-mingw-w64-i686 wine1.6"
+#    RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-reduce-exports"
+#  - HOST=i686-linux-gnu PACKAGES="g++-multilib python3 python3-dev python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libboost-system-dev libboost-filesystem-dev libminiupnpc-dev  libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+#    DEP_OPTS="" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--disable-gui-tests --disable-bench --enable-gui --with-gui=auto --enable-glibc-back-compat --enable-reduce-exports LDFLAGS=-static-libstdc++" PYZQM=true
+#  - HOST=x86_64-linux-gnu PACKAGES="g++-multilib python3 python3-dev python3-pip nsis bc faketime wine1.6 bc build-essential libc6-dev libtool autotools-dev automake cmake pkg-config bsdmainutils imagemagick libqt4-dev qt4-dev-tools libqt4-dev-bin libqt4-opengl-dev libqtwebkit-dev qt4-linguist-tools libminiupnpc-dev curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev libevent-dev libboost-system-dev libboost-filesystem-dev libminiupnpc-dev libprotobuf-dev protobuf-compiler libqrencode-dev flex libelf-dev libdwarf-dev ttf-mscorefonts-installer ttf-mscorefonts-installer nsis-pluginapi libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev firebird-dev libegl1-mesa-dev libpq-dev libsqlite3-dev unixodbc-dev"
+#    DEP_OPTS="" RUN_TESTS=false GOAL="install" 
+#    BITCOIN_CONFIG="--enable-zmq --disable-gui-tests --disable-bench --disable-maintainer-mode --enable-glibc-back-compat --enable-reduce-exports --enable-gui --with-gui=auto CPPFLAGS=-DDEBUG_LOCKORDER "
 #    PYZMQ=true
-  - HOST=x86_64-unknown-linux-gnu PACKAGES="bc python3-dev python3-pip libqt5gui5 libqt5core5a libqt5dbus5 qtbase5-dev libevent-dev libboost-system-dev libboost-filesystem-dev qttools5-dev qttools5-dev-tools libminiupnpc-dev libzmq3-dev libprotobuf-dev protobuf-compiler libdb4.8++ libdb4.8 libdb4.8-dev db4.8-util libdb4.8++-dev"
-    DEP_OPTS="" RUN_TESTS=false GOAL="install" 
-    BITCOIN_CONFIG="--enable-zmq --enable-glibc-back-compat --enable-reduce-exports --with-gui=qt5 CPPFLAGS=-DDEBUG_LOCKORDER "
-  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev
-    libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler" 
-    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.11 GOAL="deploy"
+  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python-dev" BITCOIN_CONFIG="--enable-reduce-exports" OSX_SDK=10.11 GOAL="deploy"
+
+#  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler" 
+#    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.11 GOAL="deploy"
+#  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler" 
+#    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.8 GOAL="deploy"
+#  - HOST=x86_64-apple-darwin11 PACKAGES="cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools python3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler" 
+#    BITCOIN_CONFIG="--enable-gui --enable-reduce-exports --enable-werror --enable-sse2" OSX_SDK=10.13 GOAL="deploy"
+>>>>>>> e1d17ca5b2b18a28dfed3311a3ad15fcd9aff864
 before_install:
 - openssl aes-256-cbc -K $encrypted_96e672130830_key -iv $encrypted_96e672130830_iv -in deploy.enc -out deploy -d
 - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
@@ -143,7 +138,11 @@ after_success:
 - export RNAME=$RNAME-$(git log --format=%h -1)-$RBITS
 - export GITCOM=$(git log --format=%h -1)
 - mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME
+- if [[ -n "/home/travis/build/CryptoDragonLady/worx/build/worx-i686-w64-mingw32/worx-1.3.0-win32-setup.exe" ]]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-i686-w64-mingw32/worx-1.3.0-win32-setup.exe /home/travis/build/CryptoDragonLady/worx/$RNAME ; fi
+- if [[ -n "/home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-w64-mingw32/worx-1.3.0-win64-setup.exe" ]]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-w64-mingw32/worx-1.3.0-win64-setup.exe /home/travis/build/CryptoDragonLady/worx/$RNAME ; fi
+- mkdir /home/travis/build/CryptoDragonLady/worx/$RNAME/lib
 - if [ -n "$OSX_SDK" ]; then cp /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-apple-darwin11/Worx-Core.dmg /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx/$RNAME/; fi
+- if [ -z "$OSX_SDK" ]; then cp /lib/libbitcoin* /home/travis/build/CryptoDragonLady/worx/$RNAME/lib/; ls /lib; fi
 - if [ -z "$OSX_SDK" ]; then cp /bin/worx* /home/travis/build/CryptoDragonLady/worx/$RNAME/; cd /home/travis/build/CryptoDragonLady/worx; fi
 - if [ -z "$OSX_SDK" ]; then tar -cf $RNAME.tar $RNAME && gzip -9 $RNAME.tar; fi
 - ls -al /home/travis/build/CryptoDragonLady/worx/$RNAME/.*
@@ -155,6 +154,10 @@ deploy:
   api_key:
     secure: SrIFjyo6R5dYkmGM5/MA4qnzmw++kO2Ri/kIZ7WFKkX4VJpUV7OH3lv3GaXP1wjwI0Ic4TBMwoy1CmZad0PJKXSOsPz2zSg5jE34Ty8TtWqP5D/j9QMMHEmdofNqewROvh3W+/lISVlGY3w7L06k9DCxZDpPRB/mWBlAeyTb2TFj0Sohf1dCykvenTAbDZ8frt5ZESVFSp7YQDYW4gs3+VknMucq0ukJemDIwGKFmH8muVLeO5uSh+EHNsunKxUN4nx1ZmAJfhFUh3r/bc+4nkdxGBYjEL8daAd2hWY419myzDOx7eC1xzOJjImjW+lWGT2YwB467R5olEo22Wk5onMUWu2sgGeSnhNkMpwRaV4uA18L2+iaV9WUfr5OYJpiiPrPwsaZVhg4DlAEvMdRKyD0lXkgSc4Bq8WBYwqIOonAugEMy3qRhy4derdohpV75Y78HJKkRCSKOIeGtoH3WSl0ZiBhwttHHkzMcwD0+s8JyqQgQC/5HGGHQJPdmxjQYn/iGAeJCiztXS44ICj7R15otOzz3x0DEaLksYLXH8zP6Ke+Xo+GRTPnCB9J9uCDJasLxk1icJzAAZ36mvhYhkReIX1Ss1q3TFUFOjFKoY2k1rMNIlQLlR0dbChoEvWaP9JzwfJT6zNQaTe8vXqofVxvT2BPG5vOKFmg0AicUFo=
   file: /home/travis/build/CryptoDragonLady/worx/$FRNAME
+  file: /home/travis/build/CryptoDragonLady/worx/build/worx-i686-w64-mingw32/worx*.exe
+  file: /home/travis/build/CryptoDragonLady/worx/build/worx-x86_64-w64-mingw32/worx*.exe
+  file: /home/travis/build/CryptoDragonLady/worx/build/worx-i686-w64-mingw32/Worx*.exe
+  file: /home/travis/build/CryptoDragonLady/worx/build/worx-i686-w64-mingw32/Worx*.dmg
   skip_cleanup: true
   on: 
 repo: CryptoDragonLady/worx

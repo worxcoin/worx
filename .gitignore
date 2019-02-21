@@ -1,3 +1,5 @@
 id_rsa
 deploy.enc
 scripts/relpush.sh
+.travis.yml
+
