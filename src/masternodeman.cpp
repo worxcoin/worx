@@ -844,8 +844,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         int current;
         int64_t lastUpdated;
         int protocolVersion;
-        CScript donationAddress = "WUxB9ervaqE3mQgYLFyXwD27Ubs97vFCEQ";
-        int donationPercentage = 10;
+        CScript donationAddress;
+        int donationPercentage;
         std::string strMessage;
 
         vRecv >> vin >> addr >> vchSig >> sigTime >> pubkey >> pubkey2 >> count >> current >> lastUpdated >> protocolVersion >> donationAddress >> donationPercentage;
