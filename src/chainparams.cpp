@@ -112,7 +112,7 @@ public:
         nLastPOWBlock = 1430;
         nMaturity = 100;
         nMasternodeCountDrift = 20;
-	nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
+	nMasternodeColleteralLimxDev = 5000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 21000000 * COIN;
 
@@ -140,9 +140,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x8d07c3e3724c17793bf8794d8bdeb30e33cf8ea4195142706031275f95747972"));
         
 
-        vSeeds.push_back(CDNSSeedData("seed01.worx.global", "seed01.worx.global"));
-	vSeeds.push_back(CDNSSeedData("seed02.worx.global", "seed02.worx.global"));
-	vSeeds.push_back(CDNSSeedData("seed03.worx.global", "seed03.worx.global"));
+        vSeeds.push_back(CDNSSeedData("seed1.worxcoin.io", "seed1.worxcoin.io"));
+	vSeeds.push_back(CDNSSeedData("seed2.worxcoin.io", "seed2.worxcoin.io"));
+	vSeeds.push_back(CDNSSeedData("seed3.worxcoin.io", "seed3.worxcoin.io"));
         //vFixedSeeds.clear();
         //vSeeds.clear();
 

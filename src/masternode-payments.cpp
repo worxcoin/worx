@@ -340,11 +340,16 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 }
 
 int CMasternodePayments::GetMinMasternodePaymentsProto()
-{    
-    if (IsSporkActive(SPORK_10_MASTERNODE_PAY_UPDATED_NODES))
+{
+    if (IsSporkActive(SPORK_10_MASTERNODE_PAY_UPDATED_NODES)) {
         return ActiveProtocol();                          // Allow only updated peers
-    else
+  } else {
+	if (pindexPrev->nHeight +1 < 430000) {
         return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT; // Also allow old peers as long as they are allowed to run
+      } else {
+	return MIN_PEER_PROTO_VERSION_AFTER_BLOCK_430000; // Unless its after block 410000, then only pay current. 
+      }
+  }
 }
 
 void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)

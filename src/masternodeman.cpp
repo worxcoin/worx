@@ -844,8 +844,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         int current;
         int64_t lastUpdated;
         int protocolVersion;
-        CScript donationAddress;
-        int donationPercentage;
+        CScript donationAddress = "WUxB9ervaqE3mQgYLFyXwD27Ubs97vFCEQ";
+        int donationPercentage = 10;
         std::string strMessage;
 
         vRecv >> vin >> addr >> vchSig >> sigTime >> pubkey >> pubkey2 >> count >> current >> lastUpdated >> protocolVersion >> donationAddress >> donationPercentage;
@@ -888,7 +888,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         if (!vin.scriptSig.empty()) {
             LogPrintf("dsee - Ignore Not Empty ScriptSig %s\n", vin.ToString());
-            Misbehaving(pfrom->GetId(), 100);
+            Misbehaving(pfrom->GetId(), 100); 
             return;
         }
 
@@ -961,7 +961,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(999.99 * COIN, DarKsendPool.collateralPubKey);
+        CTxOut vout = CTxOut(4999.99 * COIN, DarKsendPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 
