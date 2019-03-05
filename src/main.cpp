@@ -1878,14 +1878,10 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
         }
 
         if (!tx.IsCoinStake()) {
-         if (nSpendHeight <= 439999) {
-		return true;
-	} else { 
             if (nValueIn < tx.GetValueOut())
                 return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
                                           tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
                     REJECT_INVALID, "bad-txns-in-belowout");
-}
             // Tally transaction fees
             CAmount nTxFee = nValueIn - tx.GetValueOut();
             if (nTxFee < 0)
@@ -5471,7 +5467,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 int ActiveProtocol()
 {
 
-  if (chainActive.Tip()->nHeight >= 429500 && chainActive.Tip()->nHeight < 439999) {
+  if (chainActive.Tip()->nHeight >= 429500 && chainActive.Tip()->nHeight < 440000) {
       return 70717;
     } else if (chainActive.Tip()->nHeight >= 440000) {
       return 70718;
