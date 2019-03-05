@@ -1427,6 +1427,7 @@ CAmount CWallet::GetImmatureWatchOnlyBalance() const
 void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const CCoinControl* coinControl, bool fIncludeZeroValue, AvailableCoinsType nCoinType, bool fUseIX) const
 {
     vCoins.clear();
+    int nHeight = chainActive.Height();
 
     {
         LOCK2(cs_main, cs_wallet);
@@ -1918,6 +1919,8 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
 
     //order the array so largest nondenom are first, then denominations, then very small inputs.
     sort(vCoins.rbegin(), vCoins.rend(), CompareByPriority());
+
+    int nHeight = chainActive.Height();
 
     BOOST_FOREACH (const COutput& out, vCoins) {
         //do not allow inputs less than 1 CENT
