@@ -5468,22 +5468,14 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 int ActiveProtocol()
 {
 
-  if (chainActive.Tip()->nHeight >= 131282 && chainActive.Tip()->nHeight < 197035) {
-      return 70813;
-    } else if (chainActive.Tip()->nHeight >= 197035 && chainActive.Tip()->nHeight < 207500) {
-      return 70814;
-    } else if (chainActive.Tip()->nHeight >= 207500 && chainActive.Tip()->nHeight < 286315) {
-      return 70815;
-    } else if (chainActive.Tip()->nHeight >= 286315 && chainActive.Tip()->nHeight < 329515) {
-      return 70816;
-    } else if (chainActive.Tip()->nHeight >= 329515 && chainActive.Tip()->nHeight < 373865) {
-      return 70817;
-    } else if (chainActive.Tip()->nHeight >= 373865) {
-      return 70818;
+  if (chainActive.Tip()->nHeight >= 429500 && chainActive.Tip()->nHeight < 439999) {
+      return 70717;
+    } else if (chainActive.Tip()->nHeight >= 440000) {
+      return 70718;
     }
 
 return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
- 
+
 }
 
 // requires LOCK(cs_vRecvMsg)
