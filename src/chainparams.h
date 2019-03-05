@@ -143,6 +143,10 @@ protected:
     std::string strSporkKey;
     std::string strDarksendPoolDummyAddress;
     int64_t nStartMasternodePayments;
+    int nNewMasternodeCollateral_StartBlock;
+    int nNewMasternodeCollateral_GPBlock;
+    int nNewMasternode_Collateral;
+    int nOriginalMasternode_Collateral;
 };
 
 /** 
