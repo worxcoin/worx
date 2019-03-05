@@ -60,6 +60,18 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 
         //does a task if needed
         ExecuteSpork(spork.nSporkID, spork.nValue);
+	if (chainActive.Tip()->nHeight >= 440000) {
+ 	 if (spork.nSporkID == 10017 && GetSporkValue(SPORK_18_KILL_STRAGGLERS) > 0) {
+    	  LOCK(cs_vNodes);
+    	  BOOST_FOREACH (CNode* pnode, vNodes) {
+      	    if (pnode->nVersion != MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT) {
+	      CNode::Ban(pnode->addr);
+              pnode->CloseSocketDisconnect();
+              LogPrintf("Dropped and banned peer %s (%s) for not updating\n", pnode->GetId(),pnode->addr.ToString());
+      	    }
+	  }
+	}
+      }
     }
     if (strCommand == "getsporks") {
         std::map<int, CSporkMessage>::iterator it = mapSporksActive.begin();
