@@ -1878,7 +1878,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
         }
 
         if (!tx.IsCoinStake()) {
-         if (coins->nHeight <= 439999) {
+         if (nSpendHeight <= 439999) {
 		return true;
 	} else { 
             if (nValueIn < tx.GetValueOut())
