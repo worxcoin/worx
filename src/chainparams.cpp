@@ -112,9 +112,13 @@ public:
         nLastPOWBlock = 1430;
         nMaturity = 100;
         nMasternodeCountDrift = 20;
-	nMasternodeColleteralLimxDev = 5000; //Params().MasternodeColleteralLimxDev()
+	nMasternodeColleteralLimxDev = 1000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 21000000 * COIN;
+        nNewMasternodeCollateral_StartBlock = 440000; // Nov 7, 2018 (approximately)
+	nNewMasternodeCollateral_GPBlock = 450000; // 1 week grace period to allow for masternodes to activate using the new collateral
+        nNewMasternode_Collateral = 5000;
+	nOriginalMasternode_Collateral = 1000;
 
         const char* pszTimestamp = "29th April - Worx Birthday YAY!";
         CMutableTransaction txNew;

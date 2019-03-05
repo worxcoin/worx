@@ -27,11 +27,26 @@ CMasternodeSync::CMasternodeSync()
 
 bool CMasternodeSync::IsSynced()
 {
+  // Return true while new masternodes settle into the network.  Without this in place, staking will halt.
+    int nHeight = chainActive.Height();
+
+    if (nHeight >= Params().NewMasternodeCollateral_StartBlock() && nHeight <= Params().NewMasternodeCollateral_GPBlock()) {
+      return true;
+    }
+
     return RequestedMasternodeAssets == MASTERNODE_SYNC_FINISHED;
 }
 
 bool CMasternodeSync::IsBlockchainSynced()
 {
+
+ // masternodes will not start if the chain reports as not synced.  Just as a safety net during the collateral grace period, return true.
+    int nHeight = chainActive.Height();
+
+    if (nHeight >= Params().NewMasternodeCollateral_StartBlock() && nHeight <= Params().NewMasternodeCollateral_GPBlock()) {
+      return true;
+}
+
     static bool fBlockchainSynced = false;
     static int64_t lastProcess = GetTime();
 
