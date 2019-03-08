@@ -60,6 +60,18 @@ void ProcessSpork(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 
         //does a task if needed
         ExecuteSpork(spork.nSporkID, spork.nValue);
+	if (chainActive.Tip()->nHeight >= 440000) {
+ 	 if (spork.nSporkID == 10017 && GetSporkValue(SPORK_18_KILL_STRAGGLERS) > 0) {
+    	  LOCK(cs_vNodes);
+    	  BOOST_FOREACH (CNode* pnode, vNodes) {
+      	    if (pnode->nVersion != MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT) {
+	      CNode::Ban(pnode->addr);
+              pnode->CloseSocketDisconnect();
+              LogPrintf("Dropped and banned peer %s (%s) for not updating\n", pnode->GetId(),pnode->addr.ToString());
+      	    }
+	  }
+	}
+      }
     }
     if (strCommand == "getsporks") {
         std::map<int, CSporkMessage>::iterator it = mapSporksActive.begin();
@@ -92,7 +104,8 @@ bool IsSporkActive(int nSporkID)
         if (nSporkID == SPORK_14_NEW_PROTOCOL_ENFORCEMENT) r = SPORK_14_NEW_PROTOCOL_ENFORCEMENT_DEFAULT;
 	if (nSporkID == SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) r = SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2_DEFAULT;
         if (nSporkID == SPORK_16_MN_WINNER_MINIMUM_AGE) r = SPORK_16_MN_WINNER_MINIMUM_AGE_DEFAULT;
-
+        if (nSporkID == SPORK_17_PROPOSAL_VETO) r = SPORK_17_PROPOSAL_VETO_DEFAULT;
+	if (nSporkID == SPORK_18_KILL_STRAGGLERS) r = SPORK_18_KILL_STRAGGLERS_DEFAULT;
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
     }
     if (r == -1) r = 4070908800; //return 2099-1-1 by default
@@ -121,6 +134,8 @@ int64_t GetSporkValue(int nSporkID)
         if (nSporkID == SPORK_14_NEW_PROTOCOL_ENFORCEMENT) r = SPORK_14_NEW_PROTOCOL_ENFORCEMENT_DEFAULT;
 	if (nSporkID == SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) r = SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2_DEFAULT;
         if (nSporkID == SPORK_16_MN_WINNER_MINIMUM_AGE) r = SPORK_16_MN_WINNER_MINIMUM_AGE_DEFAULT;
+        if (nSporkID == SPORK_17_PROPOSAL_VETO) r = SPORK_17_PROPOSAL_VETO_DEFAULT; 
+        if (nSporkID == SPORK_18_KILL_STRAGGLERS) r = SPORK_18_KILL_STRAGGLERS_DEFAULT; 
 
         if (r == -1) LogPrintf("GetSpork::Unknown Spork %d\n", nSporkID);
     }

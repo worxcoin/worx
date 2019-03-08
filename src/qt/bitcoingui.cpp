@@ -332,24 +332,24 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     coinmixAction->setToolTip(coinmixAction->statusTip());
     coinmixAction->setCheckable(true);
 
-	
+
 #ifdef Q_OS_MAC
     coinmixAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
 #else
     coinmixAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 #endif
 	tabGroup->addAction(coinmixAction);
-	
+
 	///	Unlock
 	unlockWalletAction = new QAction(QIcon(":/icons/blueunlock"),tr("&Unlock Wallet..."), this);
-    unlockWalletAction->setStatusTip(tr("Unlock wallet"));
+        unlockWalletAction->setStatusTip(tr("Unlock wallet"));
 	unlockWalletAction->setToolTip(unlockWalletAction->statusTip());
 	unlockWalletAction->setCheckable(true);
 	tabGroup->addAction(unlockWalletAction);
-	
+
 	///	Lock
 	lockWalletAction2 = new QAction(QIcon(":/icons/bluelock"),tr("&Lock Wallet..."), this);
-    lockWalletAction2->setStatusTip(tr("Lock wallet"));
+        lockWalletAction2->setStatusTip(tr("Lock wallet"));
 	lockWalletAction2->setToolTip(lockWalletAction2->statusTip());
 	lockWalletAction2->setCheckable(true);
 	tabGroup->addAction(lockWalletAction2);
@@ -384,12 +384,12 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
 	// AAAA
-	connect(coinmixAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-	
+    connect(coinmixAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+
     connect(coinmixAction, SIGNAL(triggered()), this, SLOT(gotocoinmixPage()));
-	connect(unlockWalletAction, SIGNAL(triggered()),this, SLOT(unlockWallet()));
-	connect(lockWalletAction2, SIGNAL(triggered()),this, SLOT(unlockWallet()));
-	
+    connect(unlockWalletAction, SIGNAL(triggered()),this, SLOT(unlockWallet()));
+    connect(lockWalletAction2, SIGNAL(triggered()),this, SLOT(unlockWallet()));
+
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
@@ -422,9 +422,9 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     unlockWalletAction = new QAction(tr("&Unlock Wallet..."), this);
     unlockWalletAction->setToolTip(tr("Unlock wallet"));
     lockWalletAction = new QAction(tr("&Lock Wallet"), this);
-	lockWalletAction ->setToolTip(tr("Lock Wallet"));
-	lockWalletAction2 = new QAction(tr("&Lock Wallet"), this);
-	lockWalletAction2 ->setToolTip(tr("Lock Wallet"));
+    lockWalletAction ->setToolTip(tr("Lock Wallet"));
+    lockWalletAction2 = new QAction(tr("&Lock Wallet"), this);
+    lockWalletAction2 ->setToolTip(tr("Lock Wallet"));
     signMessageAction = new QAction(QIcon(":/icons/edit"), tr("Sign &message..."), this);
     signMessageAction->setStatusTip(tr("Sign messages with your Worx addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Verify message..."), this);
@@ -456,7 +456,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
     usedReceivingAddressesAction = new QAction(QIcon(":/icons/address-book"), tr("&Receiving addresses..."), this);
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
-	
+
 	///AAAA
     openAction = new QAction(QIcon(":/icons/editpaste"), tr("Open &URI..."), this);
     openAction->setStatusTip(tr("Open a Worx: URI or payment request"));
@@ -480,7 +480,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
         connect(changePassphraseAction, SIGNAL(triggered()), walletFrame, SLOT(changePassphrase()));
         connect(unlockWalletAction, SIGNAL(triggered()), walletFrame, SLOT(unlockWallet()));
         connect(lockWalletAction, SIGNAL(triggered()), walletFrame, SLOT(lockWallet()));
-		connect(lockWalletAction2, SIGNAL(triggered()), walletFrame, SLOT(lockWallet()));
+	connect(lockWalletAction2, SIGNAL(triggered()), walletFrame, SLOT(lockWallet()));
         connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
         connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
         connect(bip38ToolAction, SIGNAL(triggered()), this, SLOT(gotoBip38Tool()));
@@ -649,10 +649,10 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
 {
     overviewAction->setEnabled(enabled);
 	////AAAAA
-	coinmixAction->setEnabled(enabled);
-	unlockWalletAction->setEnabled(enabled);
-	lockWalletAction2->setEnabled(enabled);
-	sendCoinsAction->setEnabled(enabled);
+    coinmixAction->setEnabled(enabled);
+    unlockWalletAction->setEnabled(enabled);
+    lockWalletAction2->setEnabled(enabled);
+    sendCoinsAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
     QSettings settings;
@@ -1167,7 +1167,7 @@ void BitcoinGUI::setEncryptionStatus(int status)
         changePassphraseAction->setEnabled(false);
         unlockWalletAction->setVisible(false);
         lockWalletAction->setVisible(false); //false
-		lockWalletAction2->setVisible(false); //false
+	lockWalletAction2->setVisible(false); //false
         encryptWalletAction->setEnabled(true);
         break;
     case WalletModel::Unlocked:
@@ -1178,8 +1178,8 @@ void BitcoinGUI::setEncryptionStatus(int status)
         changePassphraseAction->setEnabled(true);
         unlockWalletAction->setVisible(false);
         lockWalletAction->setVisible(true);
-		lockWalletAction2->setVisible(true);
-		lockWalletAction2->setIcon(QIcon(":/icons/blueunlock"));
+	lockWalletAction2->setVisible(true);
+	lockWalletAction2->setIcon(QIcon(":/icons/blueunlock"));
         encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
         break;
     case WalletModel::UnlockedForAnonymizationOnly:
@@ -1189,10 +1189,10 @@ void BitcoinGUI::setEncryptionStatus(int status)
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
         unlockWalletAction->setVisible(true);
-		unlockWalletAction->setIcon(QIcon(":/icons/bluelock"));
+	unlockWalletAction->setIcon(QIcon(":/icons/bluelock"));
         lockWalletAction->setVisible(true);
-		lockWalletAction2->setVisible(false);
-		lockWalletAction2->setIcon(QIcon(":/icons/blueunlock"));
+	lockWalletAction2->setVisible(false);
+	lockWalletAction2->setIcon(QIcon(":/icons/blueunlock"));
         encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
         break;
     case WalletModel::Locked:
@@ -1202,10 +1202,10 @@ void BitcoinGUI::setEncryptionStatus(int status)
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
         unlockWalletAction->setVisible(true);
-		unlockWalletAction->setIcon(QIcon(":/icons/bluelock"));
+	unlockWalletAction->setIcon(QIcon(":/icons/bluelock"));
         lockWalletAction->setVisible(false);
-		lockWalletAction2->setVisible(false);
-		encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
+	lockWalletAction2->setVisible(false);
+	encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
         break;
     }
 }

@@ -467,15 +467,22 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
             pwalletMain->LockCoin(outpoint);
     }
 
+    int nHeight = chainActive.Height();
+
     // Filter
     BOOST_FOREACH (const COutput& out, vCoins) {
-        if (out.tx->vout[out.i].nValue == Params().MasternodeColleteralLimxDev() * COIN) { //exactly
+        if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
+          if (out.tx->vout[out.i].nValue == Params().NewMasternode_Collateral() * COIN) { //exactly
             filteredCoins.push_back(out);
+          }
+        } else {
+          if (out.tx->vout[out.i].nValue == Params().OriginalMasternode_Collateral() * COIN) { //exactly
+            filteredCoins.push_back(out);
+          }
         }
     }
     return filteredCoins;
 }
-
 // when starting a Masternode, this can enable to run as a hot wallet with no funds
 bool CActiveMasternode::EnableHotColdMasterNode(CTxIn& newVin, CService& newService)
 {
