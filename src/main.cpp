@@ -1663,14 +1663,12 @@ if( nHeight >= 1 && nHeight <= 1440 ) {
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
-
-
 	int64_t ret = 0;
 
-	if( nHeight >= 440000 ) {
-        ret = blockValue * 0.7;
-	} else if (nHeight < 440000) {
-	ret = blockValue * 0.8;
+	if (nHeight < 440000) {
+        ret = blockValue * 0.8;
+	} else if (nHeight >= 440000) {
+	ret = blockValue * 0.7;
 	}
 	return ret;
 }
@@ -1885,6 +1883,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
                 return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
                                           tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
                     REJECT_INVALID, "bad-txns-in-belowout");
+
             // Tally transaction fees
             CAmount nTxFee = nValueIn - tx.GetValueOut();
             if (nTxFee < 0)
@@ -2251,7 +2250,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (fTxIndex)
         if (!pblocktree->WriteTxIndex(vPos))
             return state.Abort("Failed to write transaction index");
-	
+
     // add new entries
     for (const CTransaction tx: block.vtx) {
         if (tx.IsCoinBase())
@@ -2271,7 +2270,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             it++;
         }
     }
-	
+
     // add this block to the view's block chain
     view.SetBestBlock(pindex->GetBlockHash());
 
@@ -5470,14 +5469,26 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 int ActiveProtocol()
 {
 
-  if (chainActive.Tip()->nHeight >= 429500 && chainActive.Tip()->nHeight < 440000) {
-      return 70717;
-    } else if (chainActive.Tip()->nHeight >= 440000) {
-      return 70718;
+    // SPORK_14 was used for 70710. Leave it 'ON' so they don't see < 70710 nodes. They won't react to SPORK_15
+    // messages because it's not in their code
+/*
+    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT)) {
+        if (chainActive.Tip()->nHeight >= Params().ModifierUpgradeBlock())
+            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
     }
 
-return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+    return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
+*/
 
+
+    // SPORK_15 is used for 70910. Nodes < 70910 don't see it and still get their protocol version via SPORK_14 and their 
+    // own ModifierUpgradeBlock()
+ if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) && chainActive.Height() > 201600) {
+                return MIN_PEER_PROTO_VERSION_AFTER_BLOCK_201601;
+        } else {
+                return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+        }
+ 
 }
 
 // requires LOCK(cs_vRecvMsg)

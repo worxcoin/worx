@@ -888,7 +888,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         if (!vin.scriptSig.empty()) {
             LogPrintf("dsee - Ignore Not Empty ScriptSig %s\n", vin.ToString());
-            Misbehaving(pfrom->GetId(), 100); 
+            Misbehaving(pfrom->GetId(), 100);
             return;
         }
 
@@ -961,7 +961,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(999.99 * COIN, DarKsendPool.collateralPubKey);
+        CTxOut vout = CTxOut(4999.99 * COIN, DarKsendPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 

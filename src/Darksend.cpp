@@ -2104,28 +2104,20 @@ std::string CDarksendPool::GetMessageByID(int messageID)
 
 bool CDarKsendSigner::IsVinAssociatedWithPubkey(CTxIn& vin, CPubKey& pubkey)
 {
-   CScript payee2;
+    CScript payee2;
     payee2 = GetScriptForDestination(pubkey.GetID());
 
     CTransaction txVin;
     uint256 hash;
-    int nHeight = chainActive.Height();
-
     if (GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         BOOST_FOREACH (CTxOut out, txVin.vout) {
-          if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
-            if (out.nValue == Params().NewMasternode_Collateral() * COIN) {
-              if (out.scriptPubKey == payee2) return true;
+            if (out.nValue == Params().MasternodeColleteralLimxDev() * COIN) {
+                if (out.scriptPubKey == payee2) return true;
             }
-          } else {
-            if (out.nValue == Params().OriginalMasternode_Collateral() * COIN) {
-              if (out.scriptPubKey == payee2) return true;
-            }
-          }
         }
     }
 
-return false;
+    return false;
 }
 
 bool CDarKsendSigner::SetKey(std::string strSecret, std::string& errorMessage, CKey& key, CPubKey& pubkey)

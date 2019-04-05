@@ -95,10 +95,6 @@ public:
     std::string DarksendPoolDummyAddress() const { return strDarksendPoolDummyAddress; }
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }
     CBaseChainParams::Network NetworkID() const { return networkID; }
-    int NewMasternodeCollateral_StartBlock() const { return nNewMasternodeCollateral_StartBlock; }
-    int NewMasternodeCollateral_GPBlock() const { return nNewMasternodeCollateral_GPBlock; }
-    int NewMasternode_Collateral() const { return nNewMasternode_Collateral; }
-    int OriginalMasternode_Collateral() const { return nOriginalMasternode_Collateral; }
 
 protected:
     CChainParams() {}
@@ -143,10 +139,6 @@ protected:
     std::string strSporkKey;
     std::string strDarksendPoolDummyAddress;
     int64_t nStartMasternodePayments;
-    int nNewMasternodeCollateral_StartBlock;
-    int nNewMasternodeCollateral_GPBlock;
-    int nNewMasternode_Collateral;
-    int nOriginalMasternode_Collateral;
 };
 
 /** 

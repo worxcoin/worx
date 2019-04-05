@@ -324,8 +324,8 @@ bool CActiveMasternode::Register(CTxIn vin, CService service, CKey keyCollateral
     std::string retErrorMessage;
     std::vector<unsigned char> vchMasterNodeSignature;
     int64_t masterNodeSignatureTime = GetAdjustedTime();
-    std::string donationAddress = "WUxB9ervaqE3mQgYLFyXwD27Ubs97vFCEQ";
-    int donationPercantage = 10;
+    std::string donationAddress = "";
+    int donationPercantage = 0;
 
     std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
     std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
@@ -467,22 +467,15 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
             pwalletMain->LockCoin(outpoint);
     }
 
-    int nHeight = chainActive.Height();
-
     // Filter
     BOOST_FOREACH (const COutput& out, vCoins) {
-        if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
-          if (out.tx->vout[out.i].nValue == Params().NewMasternode_Collateral() * COIN) { //exactly
+        if (out.tx->vout[out.i].nValue == Params().MasternodeColleteralLimxDev() * COIN) { //exactly
             filteredCoins.push_back(out);
-          }
-        } else {
-          if (out.tx->vout[out.i].nValue == Params().OriginalMasternode_Collateral() * COIN) { //exactly
-            filteredCoins.push_back(out);
-          }
         }
     }
     return filteredCoins;
 }
+
 // when starting a Masternode, this can enable to run as a hot wallet with no funds
 bool CActiveMasternode::EnableHotColdMasterNode(CTxIn& newVin, CService& newService)
 {

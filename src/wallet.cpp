@@ -1427,7 +1427,6 @@ CAmount CWallet::GetImmatureWatchOnlyBalance() const
 void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const CCoinControl* coinControl, bool fIncludeZeroValue, AvailableCoinsType nCoinType, bool fUseIX) const
 {
     vCoins.clear();
-    int nHeight = chainActive.Height();
 
     {
         LOCK2(cs_main, cs_wallet);
@@ -1454,49 +1453,21 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
             if (nDepth == 0 && !pcoin->InMempool())
                 continue;
 
-//            for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
-//               bool found = false;
-//               if (nCoinType == ONLY_DENOMINATED) {
-//                   found = IsDenominatedAmount(pcoin->vout[i].nValue);
-//               } else if (nCoinType == ONLY_NOT10000IFMN) {
-//                  found = !(fMasterNode && pcoin->vout[i].nValue == Params().MasternodeColleteralLimxDev() * COIN);
-//               } else if (nCoinType == ONLY_NONDENOMINATED_NOT10000IFMN) {
-//                  if (IsCollateralAmount(pcoin->vout[i].nValue)) continue; // do not use collateral amounts
-//                   found = !IsDenominatedAmount(pcoin->vout[i].nValue);
-//                    if (found && fMasterNode) found = pcoin->vout[i].nValue != Params().MasternodeColleteralLimxDev() * COIN; // do not use Hot MN funds
-//                } else if (nCoinType == ONLY_10000) {
-//                    found = pcoin->vout[i].nValue == Params().MasternodeColleteralLimxDev() * COIN;
-//                } else {
-//                    found = true;
-//                }
-
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
                 bool found = false;
                 if (nCoinType == ONLY_DENOMINATED) {
                     found = IsDenominatedAmount(pcoin->vout[i].nValue);
                 } else if (nCoinType == ONLY_NOT10000IFMN) {
-                    if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
-                        found = !(fMasterNode && pcoin->vout[i].nValue == Params().NewMasternode_Collateral() * COIN);
-                    } else {
-                        found = !(fMasterNode && pcoin->vout[i].nValue == Params().OriginalMasternode_Collateral() * COIN);
-                    }
+                    found = !(fMasterNode && pcoin->vout[i].nValue == Params().MasternodeColleteralLimxDev() * COIN);
                 } else if (nCoinType == ONLY_NONDENOMINATED_NOT10000IFMN) {
                     if (IsCollateralAmount(pcoin->vout[i].nValue)) continue; // do not use collateral amounts
                     found = !IsDenominatedAmount(pcoin->vout[i].nValue);
-                    if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
-                        if (found && fMasterNode) found = pcoin->vout[i].nValue != Params().NewMasternode_Collateral() * COIN; // do not use Hot MN funds
-                    } else {
-                        if (found && fMasterNode) found = pcoin->vout[i].nValue != Params().OriginalMasternode_Collateral() * COIN; // do not use Hot MN funds
-                    }
+                    if (found && fMasterNode) found = pcoin->vout[i].nValue != Params().MasternodeColleteralLimxDev() * COIN; // do not use Hot MN funds
                 } else if (nCoinType == ONLY_10000) {
-                    if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
-                        found = pcoin->vout[i].nValue == Params().NewMasternode_Collateral() * COIN;
-                    } else {
-                        found = pcoin->vout[i].nValue == Params().OriginalMasternode_Collateral() * COIN;
-                    }
+                    found = pcoin->vout[i].nValue == Params().MasternodeColleteralLimxDev() * COIN;
                 } else {
                     found = true;
-}
+                }
                 if (!found) continue;
 
                 isminetype mine = IsMine(pcoin->vout[i]);
@@ -1920,18 +1891,13 @@ bool CWallet::SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<
     //order the array so largest nondenom are first, then denominations, then very small inputs.
     sort(vCoins.rbegin(), vCoins.rend(), CompareByPriority());
 
-    int nHeight = chainActive.Height();
-
     BOOST_FOREACH (const COutput& out, vCoins) {
         //do not allow inputs less than 1 CENT
         if (out.tx->vout[out.i].nValue < CENT) continue;
         //do not allow collaterals to be selected
         if (IsCollateralAmount(out.tx->vout[out.i].nValue)) continue;
-	if (nHeight >= Params().NewMasternodeCollateral_StartBlock()) {
-          if (fMasterNode && out.tx->vout[out.i].nValue == Params().NewMasternode_Collateral() * COIN) continue; //masternode input
-        } else {
-          if (fMasterNode && out.tx->vout[out.i].nValue == Params().OriginalMasternode_Collateral() * COIN) continue; //masternode input
-	}
+        if (fMasterNode && out.tx->vout[out.i].nValue == Params().MasternodeColleteralLimxDev() * COIN) continue; //masternode input
+
         if (nValueRet + out.tx->vout[out.i].nValue <= nValueMax) {
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
