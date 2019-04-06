@@ -94,24 +94,31 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>20%</td>
   </tr>
   <tr>
-    <td>Phase 9</td>
-    <td>201601-460800</td>
+    <td>Phase 9a</td>
+    <td>201601-440000</td>
     <td>8 WORX</td>
     <td>80%</td>
     <td>20%</td>
+  </tr>
+   <tr>
+    <td>Phase 9b</td>
+    <td>4400001-460800</td>
+    <td>8 WORX</td>
+    <td>70%</td>
+    <td>30%</td>
   </tr>
   <tr>
     <td>Phase 10</td>
     <td>460801-986400</td>
     <td>6 WORX</td>
-    <td>80%</td>
-    <td>20%</td>
+    <td>70%</td>
+    <td>30%</td>
   </tr>
   <tr>
     <td>Phase 11</td>
     <td>986401-end</td>
     <td>3 WORX</td>
-    <td>80%</td>
-    <td>20%</td>
+    <td>70%</td>
+    <td>30%</td>
   </tr>
 </table>
