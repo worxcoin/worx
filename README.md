@@ -1,4 +1,4 @@
- Anonymized transactions using coin mixing technology. 1-Second-Transactions. Network stability with masternodes, each is secured with a collateral of 1000 WORX.
+ Anonymized transactions using coin mixing technology. 1-Second-Transactions. Network stability with masternodes, each is secured with a collateral of 5000 WORX.
 
 For further information visit us at [worx.world](https://worx.world/) [worxcoin.io](https://worxcoin.io/) or visit our ANN thread at [BitcoinTalk](TBA)
 
@@ -13,7 +13,7 @@ For further information visit us at [worx.world](https://worx.world/) [worxcoin.
 • PoS Blocks: Starting from 1431  
 • Block Time: 60 Seconds  
 • PoW Ending: ~ ca. 1/2 Days (Estimated: May 2018)  
-• Masternode Requirements: 1000 WORX  
+• Masternode Requirements: 5000 WORX  
 • Maturity: 101 Confirmations  
 
 # PoW Reward Distribution
