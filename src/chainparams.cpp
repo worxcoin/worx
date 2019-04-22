@@ -115,6 +115,7 @@ public:
 	nMasternodeColleteralLimxDev = 5000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 21000000 * COIN;
+        strDeveloperFeePayee = "WmUev2SgBicYk6C1kjxPk4UvHq4kUPPAQw";
 
         const char* pszTimestamp = "29th April - Worx Birthday YAY!";
         CMutableTransaction txNew;
@@ -206,6 +207,7 @@ public:
         nMaturity = 15;
         nModifierUpdateBlock = 51197; //approx Mon, 30 Apr 2018 04:00:00 GMT
         nMaxMoneyOut = 90000000 * COIN;
+        strDeveloperFeePayee = "---";
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1524956401;
@@ -280,6 +282,7 @@ public:
         genesis.nTime = 1524956405;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 20542301;
+        strDeveloperFeePayee = "---";
 		
         hashGenesisBlock = genesis.GetHash();
 	
@@ -316,6 +319,7 @@ public:
         networkID = CBaseChainParams::UNITTEST;
         strNetworkID = "unittest";
         nDefaultPort = 3310;
+        strDeveloperFeePayee = "---";
         vFixedSeeds.clear(); //! Unit test mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Unit test mode doesn't have any DNS seeds.
 
