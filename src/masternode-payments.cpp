@@ -17,7 +17,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 
-#define DEV_FEE_BLOCK_ACTIVATION 510000
+#define DEV_FEE_BLOCK_ACTIVATION 498500
 
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
@@ -286,7 +286,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
     CBlockIndex* pindexPrev = chainActive.Tip();
     if (!pindexPrev) return;
 
-    bool hasMasternode = true;
+    bool hasPayment = true;
     CScript payee;
 
     //spork
@@ -297,14 +297,11 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
             payee = GetScriptForDestination(winningNode->pubKeyCollateralAddress.GetID());
         } else {
             LogPrintf("CreateNewBlock: Failed to detect masternode to pay\n");
-            hasMasternode = false;
+            hasPayment = false;
         }
     }
-
-    CAmount blockValue = GetBlockValue(pindexPrev->nHeight +1 );
-    CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight +1, blockValue);
 	
-    if (hasMasternode) {
+    if (hasPayment) {
         double devfeePercent = pindexPrev->nHeight + 1 >= DEV_FEE_BLOCK_ACTIVATION ? 0.10 : 0.00;
 
         CAmount blockValue = GetBlockValue(pindexPrev->nHeight + 1);
@@ -318,7 +315,6 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 		masternodePayment = GetMasternodePayment(152501, blockValue);
 	}
 
-    if (hasPayment) {
         CBitcoinAddress developerfeeaddress(Params().GetDeveloperFeePayee());
         CScript developerfeescriptpubkey = GetScriptForDestination(developerfeeaddress.Get());
         if (fProofOfStake) {
@@ -886,9 +882,8 @@ int CMasternodePayments::GetNewestBlock()
     while (it != mapMasternodeBlocks.end()) {
         if ((*it).first > nNewestBlock) {
             nNewestBlock = (*it).first;
-        }
+        	}
         it++;
-    }
-
+    	}
     return nNewestBlock;
 }
