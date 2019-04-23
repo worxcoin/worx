@@ -17,7 +17,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 
-#define DEV_FEE_BLOCK_ACTIVATION 510000
+#define DEV_FEE_BLOCK_ACTIVATION 534100 // roughly 07:45:00 UTC 17th of May 2019
 
 /** Object for who's going to get paid on which blocks */
 CMasternodePayments masternodePayments;
