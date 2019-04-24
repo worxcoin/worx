@@ -115,7 +115,7 @@ public:
 	nMasternodeColleteralLimxDev = 5000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 21000000 * COIN;
-        strDeveloperFeePayee = "WmUev2SgBicYk6C1kjxPk4UvHq4kUPPAQw";
+        strDeveloperFeePayee = "WaX6WwwB8C5s5WRxCQzNpo6CAEL5uhFoAG";
 
         const char* pszTimestamp = "29th April - Worx Birthday YAY!";
         CMutableTransaction txNew;
