@@ -32,7 +32,7 @@ int GetBudgetPaymentCycleBlocks()
     if (Params().NetworkID() == CBaseChainParams::MAIN) return 43200;
     //for testing purposes
 
-    return 144; //ten times per day
+    return 14; //every 14 blocks
 }
 
 bool IsBudgetCollateralValid(uint256 nTxCollateralHash, uint256 nExpectedHash, std::string& strError, int64_t& nTime, int& nConf)
@@ -832,6 +832,9 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
         return ((nSubsidy / 100) * 10) * 1440 * 30;
     }
 	*/
+    CAmount nSubsidy = GetBlockValue(nHeight);
+    // Amount of blocks in a months period of time (using 1 minute per) = (60*24*30)
+    return ((nSubsidy / 100) * 10) * 60 * 24 * 30;
 }
 
 void CBudgetManager::NewBlock()
