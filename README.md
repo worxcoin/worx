@@ -108,7 +108,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>8 WORX</td>
     <td>80%/63%</td>
     <td>20%/27%</td>
-    <td>10%</td>
+    <td>0%/10%</td>
   </tr>
    <tr>
     <td>Phase 10</td>
