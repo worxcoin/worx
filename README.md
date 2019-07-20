@@ -44,6 +44,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>2 WORX</td>
     <td>80%</td>
     <td>20%</td>
+    <td></td>
   </tr>
   <tr>
     <td>Phase 2</td>
@@ -51,6 +52,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>4 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 3</td>
@@ -58,6 +60,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>8 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 4</td>
@@ -65,6 +68,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>12 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 5</td>
@@ -72,6 +76,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>16 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 6</td>
@@ -79,6 +84,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>20 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 7</td>
@@ -86,6 +92,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>24 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 8</td>
@@ -93,6 +100,7 @@ _Proof of Stake will automatically be enabled at block 1441._
     <td>10 WORX</td>
     <td>80%</td>
     <td>20%</td>
+       <td></td>
   </tr>
   <tr>
     <td>Phase 9a/b</td>
