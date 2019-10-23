@@ -3,7 +3,7 @@
 For further information visit us at [worx.world](https://worx.world/) [worxcoin.io](https://worxcoin.io/) or visit our ANN thread at [BitcoinTalk](TBA)
 
 # Masternode Setup Guide  
-**[Cold Guide](http://worx.world/assets/setupguides/Cold_Wallet_Guide.pdf) | [Hot Guide](http://worx.world/assets/setupguides/Hot_Wallet_Guide.pdf) | [Easy Install Script](https://github.com/WG91/WorxInstaller/blob/master/README.md)**
+**[Cold Guide](https://cdn.discordapp.com/attachments/442699662663614465/472782292000178186/Worx_Linux_Masternode_with_Windows_Cold_Wallet.pdf) | [Hot Guide](https://cdn.discordapp.com/attachments/442699662663614465/472782273796767744/WORX_Windows_Hot_Wallet_Guide.pdf) | [Easy Install Script](https://github.com/WG91/WorxInstaller/blob/master/README.md)**
 
 # Coin Specs
 
